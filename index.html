@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SR0N STORE | Null's Brawl</title>
+    <style>
+        :root {
+            --primary: #ffce00; 
+            --bg: #121212;
+            --card: #1e1e1e;
+        }
+        body {
+            background-color: var(--bg);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .store-title {
+            color: var(--primary);
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px #000;
+        }
+        .app-card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 25px;
+            text-align: center;
+            border: 2px solid var(--primary);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            width: 280px;
+        }
+        .app-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        h2 { margin: 10px 0; font-size: 22px; }
+        .status { color: #00ff00; font-size: 14px; margin-bottom: 20px; }
+        
+        .download-btn {
+            background: var(--primary);
+            color: #000;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 18px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .download-btn:hover {
+            transform: scale(1.1);
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="store-title">SR0N STORE</h1>
+
+    <div class="app-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6A6A55" class="app-icon" alt="App Icon">
+        <h2>Null's Brawl</h2>
+        <p class="status">● Certificate Active (Signed)</p>
+        
+        <a href="itms-services://?action=download-manifest&url=https://YOUR_USER.github.io/YOUR_REPO/manifest.plist" class="download-btn">
+            INSTALL
+        </a>
+    </div>
+
+</body>
+</html>
