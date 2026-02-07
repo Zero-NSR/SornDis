@@ -39,13 +39,6 @@
             -webkit-text-fill-color: transparent;
             font-weight: 900;
             letter-spacing: -1px;
-            text-shadow: 0 10px 20px rgba(0, 122, 255, 0.2);
-        }
-
-        header p {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            margin-top: 10px;
         }
 
         .container {
@@ -64,15 +57,12 @@
             padding: 40px 20px;
             text-align: center;
             border: 1px solid #1e1e1e;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
         .app-card:hover {
             transform: translateY(-8px);
             border-color: var(--primary-blue);
-            box-shadow: 0 15px 30px rgba(0, 122, 255, 0.1);
         }
 
         .app-icon {
@@ -81,7 +71,7 @@
             border-radius: 22%;
             margin-bottom: 25px;
             object-fit: cover;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
         .install-btn {
@@ -93,19 +83,11 @@
             font-weight: 700;
             font-size: 1.1rem;
             display: inline-block;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            border: none;
-        }
-
-        .install-btn:hover {
-            box-shadow: 0 5px 15px rgba(0, 122, 255, 0.4);
-            transform: scale(1.05);
+            transition: transform 0.2s;
         }
 
         .install-btn:active {
             transform: scale(0.95);
-            opacity: 0.9;
         }
 
         .badge {
@@ -117,8 +99,6 @@
             font-weight: 600;
             margin-bottom: 15px;
             display: inline-block;
-            text-transform: uppercase;
-            border: 1px solid rgba(0, 122, 255, 0.2);
         }
 
         .app-title {
@@ -131,26 +111,12 @@
             color: var(--text-secondary);
             margin-bottom: 30px;
             font-size: 0.95rem;
-            line-height: 1.4;
         }
 
         footer {
             margin: 50px 0 40px 0;
-            color: #444;
+            color: #333;
             font-size: 0.85rem;
-            font-weight: 500;
-            text-align: center;
-        }
-
-        /* إضافة لمسة تفاعلية بسيطة */
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #34c759;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 5px;
-            box-shadow: 0 0 10px #34c759;
         }
     </style>
 </head>
@@ -158,31 +124,31 @@
 
     <header>
         <h1>SR0N STORE</h1>
-        <p><span class="status-dot"></span> Online & High-Speed Servers</p>
+        <p>Verified Premium Apps</p>
     </header>
 
     <div class="container">
         
         <div class="app-card">
             <div class="badge">Injected API</div>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg" class="app-icon" alt="Delta">
+            <img src="https://static.wikia.nocookie.net/roblox/images/b/bd/RobloxLogo2011.png" class="app-icon" alt="Old Roblox Icon">
             <div class="app-title">Sorn Delta</div>
-            <p class="app-desc">Delta Executor v2.705.924<br>Optimized for PixelDrain Servers.</p>
+            <p class="app-desc">Delta Executor v2.705.924<br>Classic Icon Edition.</p>
             <a href="itms-services://?action=download-manifest&url=https://Zero-NSR.github.io/SornDis/manifest_delta.plist" class="install-btn">INSTALL</a>
         </div>
 
         <div class="app-card">
-            <div class="badge">1.04 GB • Direct</div>
-            <img src="https://vignette.wikia.nocookie.net/brawlstars/images/2/23/App_Icon.png" class="app-icon" alt="Brawl Stars">
+            <div class="badge">1.04 GB • Mod</div>
+            <img src="https://vignette.wikia.nocookie.net/brawlstars/images/2/23/App_Icon.png" class="app-icon" alt="Brawl Stars Official Icon">
             <div class="app-title">Sorn Brawl</div>
-            <p class="app-desc">Private Server v65.165<br>High-speed large file download.</p>
+            <p class="app-desc">Private Server v65.165<br>Unlimited Gems & Brawlers.</p>
             <a href="itms-services://?action=download-manifest&url=https://Zero-NSR.github.io/SornDis/manifest_brawl.plist" class="install-btn">INSTALL</a>
         </div>
 
     </div>
 
     <footer>
-        &copy; 2026 SR0N ENGINE. All Rights Reserved.
+        &copy; 2026 SR0N ENGINE.
     </footer>
 
 </body>
