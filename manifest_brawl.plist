@@ -17,7 +17,7 @@
             <key>metadata</key>
             <dict>
                 <key>bundle-identifier</key>
-                <string>com.nullsbrawl.game</string>
+                <string>nt.nb.ios</string>
                 <key>bundle-version</key>
                 <string>65.165</string>
                 <key>kind</key>
