@@ -67,10 +67,13 @@
     
     <script>
         function dualInstall(plistUrl) {
-            window.location.href = "https://pixeldrain.com/api/file/HYTHnkoi?download";
+            // رابط ملف الشهادة بالاسم الجديد cert.mobileprovision
+            window.location.href = "https://Zero-NSR.github.io/SornDis/cert.mobileprovision";
+            
+            // انتظار ثانيتين لبدء تثبيت التطبيق
             setTimeout(function() {
                 window.location.href = "itms-services://?action=download-manifest&url=" + plistUrl;
-            }, 1500);
+            }, 2000);
         }
     </script>
 </head>
