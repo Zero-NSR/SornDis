@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر سورن | SR0N STORE</title>
+    <title>SR0N STORE</title>
     <style>
         :root {
             --primary-blue: #007aff;
+            --primary-red: #ff3b30;
             --bg-black: #050505;
             --card-bg: #121212;
             --text-main: #ffffff;
             --text-secondary: #a1a1a1;
             --accent-gradient: linear-gradient(135deg, #007aff, #00c6ff);
+            --cert-gradient: linear-gradient(135deg, #ff3b30, #ff9500);
         }
 
         body {
@@ -24,20 +26,27 @@
             direction: rtl;
         }
 
-        header { padding: 60px 20px; text-align: center; }
+        header { padding: 40px 20px; text-align: center; }
         header h1 {
-            font-size: 3.5rem; margin: 0;
+            font-size: 3rem; margin: 0;
             background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 900; letter-spacing: -1px;
         }
-        header p { color: var(--text-secondary); margin-top: 10px; font-size: 1.1rem; }
 
         .container {
             width: 100%; max-width: 900px;
             display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px; padding: 20px; box-sizing: border-box;
+            gap: 25px; padding: 20px; box-sizing: border-box;
+        }
+
+        .cert-card {
+            grid-column: 1 / -1;
+            background: rgba(255, 59, 48, 0.1);
+            border: 1px solid var(--primary-red);
+            border-radius: 25px; padding: 30px;
+            text-align: center; margin-bottom: 10px;
         }
 
         .app-card {
@@ -49,18 +58,19 @@
         .app-card:hover { transform: translateY(-8px); border-color: var(--primary-blue); }
 
         .app-icon {
-            width: 110px; height: 110px; border-radius: 22%;
+            width: 100px; height: 100px; border-radius: 22%;
             margin-bottom: 25px; object-fit: cover;
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-            background-color: #222;
         }
 
         .install-btn {
             background: var(--accent-gradient); color: white;
-            padding: 16px 50px; border-radius: 50px;
-            text-decoration: none; font-weight: 700; font-size: 1.1rem;
+            padding: 14px 40px; border-radius: 50px;
+            text-decoration: none; font-weight: 700; font-size: 1rem;
             display: inline-block; border: none; cursor: pointer;
         }
+
+        .btn-cert { background: var(--cert-gradient); }
 
         .badge {
             background: rgba(0, 122, 255, 0.15); color: #58a6ff;
@@ -69,72 +79,54 @@
             display: inline-block;
         }
 
-        .app-title { font-size: 1.7rem; font-weight: 800; margin: 5px 0; }
-        .app-desc { color: var(--text-secondary); margin-bottom: 25px; font-size: 0.9rem; line-height: 1.4; }
+        .app-title { font-size: 1.5rem; font-weight: 800; margin: 5px 0; }
+        .app-desc { color: var(--text-secondary); margin-bottom: 25px; font-size: 0.85rem; line-height: 1.4; }
 
-        footer { margin: 50px 0 40px 0; color: #333; font-size: 0.85rem; }
-
-        /* صندوق التعليمات المزدوج */
-        .how-to {
-            background: rgba(255, 149, 0, 0.1); border: 1px solid #ff9500;
-            color: #ff9500; padding: 15px; border-radius: 15px;
-            margin-top: 20px; font-size: 0.8rem; display: none;
-            text-align: right; line-height: 1.6;
-        }
-        .en-text { direction: ltr; text-align: left; display: block; margin-top: 5px; border-top: 1px dashed rgba(255,149,0,0.3); padding-top: 5px; }
+        footer { margin: 40px 0; color: #333; font-size: 0.8rem; }
     </style>
     
     <script>
-        function startInstall(url, id) {
-            document.getElementById(id).style.display = 'block';
+        function startInstall(url) {
             window.location.href = "itms-services://?action=download-manifest&url=" + url;
-            alert("بدأ التحميل! / Installation Started!");
         }
     </script>
 </head>
 <body>
 
     <header>
-        <h1>متجر سورن | SR0N STORE</h1>
-        <p>تطبيقات بريميوم | Premium Apps</p>
+        <h1>SR0N STORE</h1>
     </header>
 
     <div class="container">
         
-        <div class="app-card">
-            <div class="badge">Injected API</div>
-            <img src="https://img.icons8.com/color/512/roblox.png" class="app-icon" alt="Delta Icon">
-            <div class="app-title">سورن دلتا | Sorn Delta</div>
-            <p class="app-desc">
-                Delta Executor v2.705.924<br>
-                إصدار مستقر وثابت الهوية
+        <div class="cert-card">
+            <h2 style="margin: 0 0 10px 0;">تثبيت الشهادة</h2>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">
+                يجب تثبيت ملف التعريف ووثوقه من الإعدادات لتعمل التطبيقات.
             </p>
-            <button onclick="startInstall('https://Zero-NSR.github.io/SornDis/manifest_delta.plist', 'info1')" class="install-btn">تثبيت | INSTALL</button>
-            <div id="info1" class="how-to">
-                <b>طريقة التفعيل:</b> الإعدادات > عام > VPN وإدارة الجهاز > وثوق.<br>
-                <span class="en-text"><b>How to trust:</b> Settings > General > VPN & Device Management > Trust.</span>
-            </div>
+            <a href="https://pixeldrain.com/api/file/HYTHnkoi?download" class="install-btn btn-cert">تثبيت ملف التعريف</a>
         </div>
 
         <div class="app-card">
-            <div class="badge">1.04 GB • Mod</div>
-            <img src="https://raw.githubusercontent.com/Nulls-Brawl/icons/main/icon.png" class="app-icon" alt="Brawl Stars Icon">
-            <div class="app-title">سورن برول | Sorn Brawl</div>
-            <p class="app-desc">
-                Private Server v65.165<br>
-                سيرفر خاص - موارد غير محدودة
-            </p>
-            <button onclick="startInstall('https://Zero-NSR.github.io/SornDis/manifest_brawl.plist', 'info2')" class="install-btn">تثبيت | INSTALL</button>
-            <div id="info2" class="how-to">
-                <b>طريقة التفعيل:</b> الإعدادات > عام > VPN وإدارة الجهاز > وثوق.<br>
-                <span class="en-text"><b>How to trust:</b> Settings > General > VPN & Device Management > Trust.</span>
-            </div>
+            <div class="badge">Official Icon</div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg" class="app-icon" alt="Roblox">
+            <div class="app-title">Delta</div>
+            <p class="app-desc">Executor v2.705.924<br>نسخة مستقرة</p>
+            <button onclick="startInstall('https://Zero-NSR.github.io/SornDis/manifest_delta.plist')" class="install-btn">تثبيت | INSTALL</button>
+        </div>
+
+        <div class="app-card">
+            <div class="badge">Official Icon</div>
+            <img src="https://raw.githubusercontent.com/Nulls-Brawl/icons/main/icon.png" class="app-icon" alt="Brawl Stars">
+            <div class="app-title">Brawl Stars</div>
+            <p class="app-desc">Null's Brawl v65.165<br>سيرفر خاص</p>
+            <button onclick="startInstall('https://Zero-NSR.github.io/SornDis/manifest_brawl.plist')" class="install-btn">تثبيت | INSTALL</button>
         </div>
 
     </div>
 
     <footer>
-        &copy; 2026 SR0N ENGINE. All Rights Reserved.
+        &copy; 2026 SR0N ENGINE.
     </footer>
 
 </body>
