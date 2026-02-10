@@ -7,6 +7,7 @@
     <style>
         :root {
             --primary-blue: #007aff;
+            --primary-red: #ff3b30;
             --bg-black: #050505;
             --card-bg: #121212;
             --text-main: #ffffff;
@@ -23,9 +24,9 @@
             min-height: 100vh;
         }
 
-        header { padding: 50px 20px; text-align: center; }
+        header { padding: 40px 20px; text-align: center; }
         header h1 {
-            font-size: 3.5rem; margin: 0;
+            font-size: 3rem; margin: 0;
             background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -38,22 +39,28 @@
             gap: 25px; padding: 20px; box-sizing: border-box;
         }
 
+        /* زر الشهادة في الأعلى لضمان عملها */
+        .cert-section {
+            grid-column: 1 / -1;
+            background: rgba(255, 59, 48, 0.1);
+            border: 1px solid var(--primary-red);
+            border-radius: 20px; padding: 20px;
+            text-align: center; margin-bottom: 10px;
+        }
+
         .app-card {
             background-color: var(--card-bg); border-radius: 30px;
             padding: 35px 20px; text-align: center;
             border: 1px solid #1e1e1e; transition: all 0.3s ease;
         }
 
-        .app-card:hover { transform: translateY(-5px); border-color: var(--primary-blue); }
-
         .app-icon {
             width: 100px; height: 100px; border-radius: 22%;
             margin-bottom: 20px; object-fit: cover;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
         .app-title { font-size: 1.6rem; font-weight: 800; margin: 5px 0; }
-        .version { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 25px; font-weight: 500; }
+        .version { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 25px; }
 
         .install-btn {
             background: var(--accent-gradient); color: white;
@@ -62,23 +69,13 @@
             display: inline-block; border: none; cursor: pointer;
         }
 
-        footer { margin: 50px 0; color: #333; font-size: 0.8rem; }
-    </style>
-    
-    <script>
-        function dualInstall(plistUrl) {
-            // رابط الشهادة المباشر من جيت هب (بصيغة mobileconfig المعتمدة)
-            const certUrl = "https://Zero-NSR.github.io/SornDis/cert.mobileconfig";
-            
-            // طلب تحميل ملف التعريف
-            window.location.href = certUrl;
-            
-            // انتظار 2.5 ثانية ثم طلب تثبيت التطبيق
-            setTimeout(function() {
-                window.location.href = "itms-services://?action=download-manifest&url=" + plistUrl;
-            }, 2500);
+        .cert-btn {
+            background: var(--primary-red);
+            padding: 10px 30px; font-size: 0.9rem;
         }
-    </script>
+
+        footer { margin: 40px 0; color: #333; font-size: 0.8rem; }
+    </style>
 </head>
 <body>
 
@@ -88,18 +85,23 @@
 
     <div class="container">
         
+        <div class="cert-section">
+            <div style="font-weight: bold; margin-bottom: 10px;">Step 1: Install Certificate</div>
+            <a href="https://Zero-NSR.github.io/SornDis/cert.mobileprovision" class="install-btn cert-btn">DOWNLOAD CERT</a>
+        </div>
+
         <div class="app-card">
             <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg" class="app-icon" alt="Delta">
             <div class="app-title">Delta</div>
             <div class="version">v2.705.924</div>
-            <button onclick="dualInstall('https://Zero-NSR.github.io/SornDis/manifest_delta.plist')" class="install-btn">INSTALL</button>
+            <a href="itms-services://?action=download-manifest&url=https://Zero-NSR.github.io/SornDis/manifest_delta.plist" class="install-btn">INSTALL</a>
         </div>
 
         <div class="app-card">
             <img src="https://raw.githubusercontent.com/Nulls-Brawl/icons/main/icon.png" class="app-icon" alt="Brawl Stars">
             <div class="app-title">Brawl Stars</div>
             <div class="version">v65.165</div>
-            <button onclick="dualInstall('https://Zero-NSR.github.io/SornDis/manifest_brawl.plist')" class="install-btn">INSTALL</button>
+            <a href="itms-services://?action=download-manifest&url=https://Zero-NSR.github.io/SornDis/manifest_brawl.plist" class="install-btn">INSTALL</a>
         </div>
 
     </div>
