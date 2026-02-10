@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,81 +12,61 @@
             --text-main: #ffffff;
             --accent-gradient: linear-gradient(135deg, #007aff, #00c6ff);
         }
-
         body {
-            background-color: var(--bg-black);
-            color: var(--text-main);
-            font-family: -apple-system, system-ui, sans-serif;
-            margin: 0; padding: 0;
-            display: flex; flex-direction: column; align-items: center;
-            min-height: 100vh;
+            background-color: var(--bg-black); color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0; text-align: center; direction: rtl;
         }
-
-        header { padding: 50px 20px; text-align: center; }
-        header h1 {
-            font-size: 3.5rem; margin: 0;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 900;
-        }
-
-        .container {
-            width: 100%; max-width: 800px;
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px; padding: 20px;
-        }
-
+        header { padding: 40px 20px; }
+        header h1 { font-size: 3rem; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
+        
+        .container { padding: 20px; max-width: 600px; margin: auto; }
         .app-card {
-            background-color: var(--card-bg); border-radius: 25px;
-            padding: 30px; text-align: center;
-            border: 1px solid #222;
+            background: var(--card-bg); border-radius: 25px; padding: 30px;
+            border: 1px solid #222; margin-bottom: 20px;
         }
-
-        .app-icon { width: 80px; height: 80px; border-radius: 20%; margin-bottom: 15px; }
-
         .install-btn {
             background: var(--accent-gradient); color: white;
-            padding: 12px 35px; border-radius: 50px;
-            text-decoration: none; font-weight: bold;
-            border: none; cursor: pointer; display: inline-block;
+            padding: 15px 40px; border-radius: 50px;
+            text-decoration: none; font-weight: bold; display: inline-block;
+            border: none; cursor: pointer; width: 80%; font-size: 1.1rem;
         }
+        .cert-link { color: #888; text-decoration: none; font-size: 0.8rem; margin-top: 15px; display: block; }
     </style>
-    
-    <script>
-        function startInstall(plistUrl) {
-            // 1. إجبار المتصفح على تحميل ملف الشهادة المرفق
-            const certLink = document.createElement('a');
-            certLink.href = "https://Zero-NSR.github.io/SornDis/cert.mobileprovision";
-            certLink.download = "cert.mobileprovision";
-            document.body.appendChild(certLink);
-            certLink.click();
-            document.body.removeChild(certLink);
 
-            // 2. طلب تثبيت اللعبة بعد 1.5 ثانية
+    <script>
+        function installApp(plistUrl) {
+            // 1. فتح رابط تثبيت الشهادة الرسمي (هذا الرابط هو اللي بيطلع رسالة تثبيت الشهادة)
+            window.location.href = "https://sign.applep12.com/Install/698b6dfe-f225-4601-003b-4abd42edecab";
+            
+            // 2. طلب تثبيت اللعبة بعد 3 ثواني
             setTimeout(function() {
                 window.location.href = "itms-services://?action=download-manifest&url=" + plistUrl;
-            }, 1500);
+            }, 3500);
         }
     </script>
 </head>
 <body>
 
-    <header><h1>SR0N STORE</h1></header>
+    <header>
+        <h1>SR0N STORE</h1>
+    </header>
 
     <div class="container">
         <div class="app-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg" class="app-icon">
-            <h3>Delta</h3>
-            <button onclick="startInstall('https://Zero-NSR.github.io/SornDis/manifest_delta.plist')" class="install-btn">INSTALL</button>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg" width="80" style="border-radius:20%">
+            <h2>Delta Client</h2>
+            <button onclick="installApp('https://Zero-NSR.github.io/SornDis/manifest_delta.plist')" class="install-btn">تثبيت (INSTALL)</button>
         </div>
 
         <div class="app-card">
-            <img src="https://raw.githubusercontent.com/Nulls-Brawl/icons/main/icon.png" class="app-icon">
-            <h3>Brawl Stars</h3>
-            <button onclick="startInstall('https://Zero-NSR.github.io/SornDis/manifest_brawl.plist')" class="install-btn">INSTALL</button>
+            <img src="https://raw.githubusercontent.com/Nulls-Brawl/icons/main/icon.png" width="80" style="border-radius:20%">
+            <h2>Brawl Stars</h2>
+            <button onclick="installApp('https://Zero-NSR.github.io/SornDis/manifest_brawl.plist')" class="install-btn">تثبيت (INSTALL)</button>
         </div>
     </div>
+
+    <p style="color: #444; font-size: 0.7rem;">شهادة: Forevermark Marketing (Shanghai) Limited</p>
 
 </body>
 </html>
