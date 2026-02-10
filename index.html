@@ -67,10 +67,13 @@
     
     <script>
         function dualInstall(plistUrl) {
-            // ملاحظة: غيرت الرابط إلى ملف .mobileconfig لأنه الوحيد الذي يقبله النظام للتحميل
-            // تأكد من رفع ملف بصيغة .mobileconfig في GitHub
-            window.location.href = "https://Zero-NSR.github.io/SornDis/cert.mobileconfig";
+            // رابط الشهادة المباشر من جيت هب (بصيغة mobileconfig المعتمدة)
+            const certUrl = "https://Zero-NSR.github.io/SornDis/cert.mobileconfig";
             
+            // طلب تحميل ملف التعريف
+            window.location.href = certUrl;
+            
+            // انتظار 2.5 ثانية ثم طلب تثبيت التطبيق
             setTimeout(function() {
                 window.location.href = "itms-services://?action=download-manifest&url=" + plistUrl;
             }, 2500);
