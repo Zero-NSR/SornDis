@@ -3,49 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SR0N STORE</title>
+    <title>SR0N STORE | متجر سورن</title>
     <style>
-        body { background-color: #050505; color: white; font-family: sans-serif; text-align: center; direction: rtl; padding: 20px; }
-        .app-card { background: #121212; border-radius: 20px; padding: 20px; margin-bottom: 20px; border: 1px solid #222; }
-        .install-btn { background: linear-gradient(135deg, #007aff, #00c6ff); color: white; padding: 15px; border-radius: 50px; border: none; width: 100%; font-weight: bold; cursor: pointer; }
-        h1 { color: #007aff; }
+        :root { --primary: #007aff; --bg: #050505; --card: #121212; }
+        body { background: var(--bg); color: white; text-align: center; direction: rtl; font-family: -apple-system, sans-serif; padding: 20px; }
+        .app-card { background: var(--card); border-radius: 25px; padding: 25px; margin: 15px auto; max-width: 450px; border: 1px solid #222; }
+        .btn { background: linear-gradient(135deg, #007aff, #00c6ff); color: white; padding: 16px; border-radius: 50px; border: none; width: 100%; font-weight: bold; cursor: pointer; font-size: 1.1rem; }
+        .info { font-size: 0.8rem; color: #444; margin-top: 20px; }
     </style>
-
     <script>
         function installApp(plistUrl, appName) {
-            // رابط ملف الشهادة في مستودعك
+            // رابط الشهادة الجديدة التي أرفقتها
             const certUrl = "https://Zero-NSR.github.io/SornDis/cert.mobileprovision";
 
-            // 1. فتح الشهادة بأسلوب يمنع الانتقال لمواقع خارجية
-            // نستخدم طريقة الـ iframe المخفي لتحميل الشهادة في الخلفية
-            var iframe = document.createElement('iframe');
-            iframe.style.display = 'none';
-            iframe.src = certUrl;
-            document.body.appendChild(iframe);
+            // 1. تنبيه المستخدم بالخطوات
+            alert("⚠️ خطوة التوثيق:\n\n1- سيتم تحميل ملف الشهادة الآن.\n2- اذهب للإعدادات > عام > إدارة الجهاز.\n3- اختر (China Academy of Railway Sciences) وسو لها 'وثوق'.\n4- ارجع هنا لتحميل اللعبة.");
 
-            // 2. تنبيه المستخدم فوراً
+            // 2. تحميل الشهادة مباشرة
+            window.location.href = certUrl;
+
+            // 3. طلب تثبيت التطبيق بعد وقت قصير
             setTimeout(function() {
-                alert("✅ جاري تجهيز " + appName + "\n\n1- اضغط 'سماح' إذا ظهرت.\n2- اذهب للإعدادات > عام > إدارة الجهاز.\n3- اختر Forevermark وسو لها 'وثوق'.\n4- ارجع هنا وكمل التثبيت.");
-                
-                // 3. طلب تثبيت التطبيق
                 window.location.href = "itms-services://?action=download-manifest&url=" + plistUrl;
-            }, 1000);
+            }, 4000);
         }
     </script>
 </head>
 <body>
 
-    <h1>SR0N STORE</h1>
-    <p>تحميل مباشر وآمن</p>
+    <h1 style="color: var(--primary);">SR0N STORE</h1>
+    <p>شهادة صالحة لغاية: 2026-11-11</p>
 
     <div class="app-card">
         <h2>Delta Mobile</h2>
-        <button onclick="installApp('https://Zero-NSR.github.io/SornDis/manifest_delta.plist', 'Delta')" class="install-btn">تثبيت الآن</button>
+        <button onclick="installApp('https://Zero-NSR.github.io/SornDis/manifest_delta.plist', 'Delta')" class="btn">تثبيت مباشر</button>
     </div>
 
     <div class="app-card">
         <h2>Sorn Brawl</h2>
-        <button onclick="installApp('https://Zero-NSR.github.io/SornDis/manifest_brawl.plist', 'Sorn Brawl')" class="install-btn">تثبيت الآن</button>
+        <button onclick="installApp('https://Zero-NSR.github.io/SornDis/manifest_brawl.plist', 'Sorn Brawl')" class="btn">تثبيت مباشر</button>
+    </div>
+
+    <div class="info">
+        Team ID: 582WZMYB2P <br>
+        UUID: 6682d956-3f9b-49b0-b22d-9bd7aa19d3b6
     </div>
 
 </body>
