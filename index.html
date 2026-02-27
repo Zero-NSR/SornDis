@@ -3,47 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SR0N STORE | RTX MODE</title>
+    <title>SR0N STORE</title>
     <style>
-        :root { --main: #007aff; --bg: #050505; }
-        body { background: var(--bg); color: white; font-family: -apple-system, sans-serif; text-align: center; margin: 0; padding: 20px; }
-        .app-card { background: #111; border-radius: 30px; padding: 30px; border: 1px solid #222; max-width: 400px; margin: auto; }
-        .btn-rtx { background: linear-gradient(135deg, #007aff, #00d4ff); color: white; padding: 18px; border-radius: 50px; border: none; width: 100%; font-weight: bold; cursor: pointer; font-size: 1.1rem; }
-        .btn-rtx:active { transform: scale(0.95); }
+        body { background: #050505; color: white; font-family: -apple-system, sans-serif; text-align: center; padding: 20px; }
+        .btn-rtx { background: #007aff; color: white; padding: 20px; border-radius: 50px; border: none; width: 90%; font-weight: bold; cursor: pointer; font-size: 1.2rem; box-shadow: 0 0 20px rgba(0,122,255,0.5); }
     </style>
 </head>
 <body>
 
-    <h1 style="margin-top:50px;">SR0N <span style="color:var(--main)">STORE</span></h1>
-    
-    <div class="app-card">
-        <img src="https://i.postimg.cc/JhrQQYV2/E367-C7-D2-4750-4524-ADD5-B9-A8-DA953734.png" style="width:100%; border-radius:20px; margin-bottom:15px;">
-        <h2>Delta Mobile</h2>
-        <p style="color:#666; margin-bottom:25px;">تثبيت مباشر عبر الإعدادات</p>
-
-        <button onclick="fixCertInstall()" class="btn-rtx">تثبيت الشهادة (الإعدادات)</button>
+    <h1 style="margin-top:100px;">SR0N STORE</h1>
+    <div style="margin-top:50px;">
+        <button onclick="installDirect()" class="btn-rtx">تثبيت الشهادة (الإعدادات)</button>
     </div>
 
     <script>
-        function fixCertInstall() {
-            // ملاحظة هامة: يجب أن يكون الرابط من Raw الخاص بـ GitHub
-            const certUrl = "https://raw.githubusercontent.com/Zero-NSR/SornDis/main/Forevermark%20%20Marketing(Shanghai%20)%20Limited.mobileprovision";
-            const plistUrl = "https://Zero-NSR.github.io/SornDis/manifest_delta.plist";
+        function installDirect() {
+            // السر هنا: استخدام رابط الـ Raw مع تشفير المسافات
+            const user = "Zero-NSR";
+            const repo = "SornDis";
+            const file = "Forevermark  Marketing(Shanghai ) Limited.mobileprovision";
+            
+            // هذا الرابط يجبر المتصفح يفتح "ملف تعريف" مب "تنزيل ملف"
+            const rawUrl = "https://raw.githubusercontent.com/" + user + "/" + repo + "/main/" + encodeURIComponent(file);
+            const plistUrl = "https://" + user + ".github.io/" + repo + "/manifest_delta.plist";
 
-            // الحل: فتح الرابط بطريقة تجبر السفاري على إظهار رسالة "يسمح الموقع بتحميل ملف تعريف"
-            var iframe = document.createElement('iframe');
-            iframe.style.display = 'none';
-            iframe.src = certUrl;
-            document.body.appendChild(iframe);
+            // الخطوة 1: فتح الشهادة بطريقة RTX (فتح مباشر)
+            window.location.assign(rawUrl);
 
-            alert("✅ سيظهر لك الآن تنبيه 'سماح' لتنزيل ملف التعريف.\nبعد الضغط على سماح، اذهب للإعدادات وستجدها فوق 'تم تنزيل ملف التعريف'.");
+            // الخطوة 2: تنبيه المستخدم بالتوجه للإعدادات
+            alert("⚠️ تنبيه RTX:\n1- اضغط 'سماح' (Allow).\n2- اذهب للإعدادات > تم تنزيل ملف التعريف.\n3- اضغط تثبيت ووثوق.\n4- ارجع هنا وكمل التثبيت.");
 
-            // طلب تثبيت التطبيق بعد 6 ثوانٍ
+            // الخطوة 3: تثبيت التطبيق بعد وقت كافي
             setTimeout(function() {
-                if(confirm("هل وثقت الشهادة من الإعدادات؟ اضغط موافق لتثبيت دلتا.")) {
+                if(confirm("هل انتهيت من وثوق الشهادة؟ اضغط OK لتثبيت Delta Sorn.")) {
                     window.location.href = "itms-services://?action=download-manifest&url=" + plistUrl;
                 }
-            }, 6000);
+            }, 7000);
         }
     </script>
 </body>
