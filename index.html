@@ -31,18 +31,20 @@
             text-decoration: none; font-weight: bold; display: inline-block;
             border: none; cursor: pointer; width: 80%; font-size: 1.1rem;
         }
-        .cert-link { color: #888; text-decoration: none; font-size: 0.8rem; margin-top: 15px; display: block; }
     </style>
 
     <script>
-        function installApp(plistUrl) {
-            // 1. فتح رابط تثبيت الشهادة الرسمي (هذا الرابط هو اللي بيطلع رسالة تثبيت الشهادة)
+        function installApp(plistUrl, appName) {
+            // 1. فتح رابط تثبيت الشهادة فوراً
             window.location.href = "https://sign.applep12.com/Install/698b6dfe-f225-4601-003b-4abd42edecab";
             
-            // 2. طلب تثبيت اللعبة بعد 3 ثواني
+            // 2. إظهار تنبيه يوجه المستخدم للإعدادات
             setTimeout(function() {
+                alert("تم بدء تحميل الشهادة!\n\nمهم جداً: قبل فتح " + appName + "، اذهب إلى:\nالإعدادات > عام > إدارة الجهاز\nوقم بـ 'وثوق' لشهادة Forevermark.");
+                
+                // 3. طلب تثبيت التطبيق بعد إغلاق التنبيه
                 window.location.href = "itms-services://?action=download-manifest&url=" + plistUrl;
-            }, 3500);
+            }, 2000);
         }
     </script>
 </head>
@@ -50,23 +52,26 @@
 
     <header>
         <h1>SR0N STORE</h1>
+        <p style="color: #666;">حمل الشهادة، وثقها من الإعدادات، واستمتع</p>
     </header>
 
     <div class="container">
         <div class="app-card">
             <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg" width="80" style="border-radius:20%">
             <h2>Delta Client</h2>
-            <button onclick="installApp('https://Zero-NSR.github.io/SornDis/manifest_delta.plist')" class="install-btn">تثبيت (INSTALL)</button>
+            <button onclick="installApp('https://Zero-NSR.github.io/SornDis/manifest_delta.plist', 'Delta')" class="install-btn">تثبيت (INSTALL)</button>
         </div>
 
         <div class="app-card">
             <img src="https://raw.githubusercontent.com/Nulls-Brawl/icons/main/icon.png" width="80" style="border-radius:20%">
-            <h2>Brawl Stars</h2>
-            <button onclick="installApp('https://Zero-NSR.github.io/SornDis/manifest_brawl.plist')" class="install-btn">تثبيت (INSTALL)</button>
+            <h2>Sorn Brawl</h2>
+            <button onclick="installApp('https://Zero-NSR.github.io/SornDis/manifest_brawl.plist', 'Sorn Brawl')" class="install-btn">تثبيت (INSTALL)</button>
         </div>
     </div>
 
-    <p style="color: #444; font-size: 0.7rem;">شهادة: Forevermark Marketing (Shanghai) Limited</p>
+    <footer style="padding: 20px; color: #444; font-size: 0.8rem;">
+        <p>شهادة الشركة: Forevermark Marketing (Shanghai) Limited</p>
+    </footer>
 
 </body>
 </html>
