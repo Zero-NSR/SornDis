@@ -3,35 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SR0N STORE | متجر سورن</title>
+    <title>SR0N STORE</title>
     <style>
-        :root { --main: #007aff; --bg: #050505; }
-        body { background: var(--bg); color: white; font-family: -apple-system, sans-serif; text-align: center; padding: 20px; margin: 0; }
-        .container { max-width: 450px; margin: auto; padding-top: 50px; }
-        .app-card { background: #111; border-radius: 30px; padding: 30px; border: 1px solid #222; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
-        .install-btn { background: linear-gradient(135deg, #007aff, #00d4ff); color: white; padding: 18px; border-radius: 50px; border: none; width: 100%; font-weight: bold; cursor: pointer; font-size: 1.2rem; transition: 0.3s; box-shadow: 0 8px 20px rgba(0,122,255,0.4); }
-        .install-btn:active { transform: scale(0.96); }
-        .info-text { color: #555; font-size: 0.8rem; margin-top: 20px; line-height: 1.6; }
-        .status-badge { display: inline-block; padding: 5px 15px; background: #1a1a1a; border-radius: 10px; font-size: 0.7rem; color: #00d4ff; margin-bottom: 15px; border: 1px solid #333; }
+        body { background: #050505; color: white; font-family: -apple-system, sans-serif; text-align: center; padding: 20px; }
+        .app-card { background: #111; border-radius: 25px; padding: 25px; border: 1px solid #222; max-width: 400px; margin: 40px auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .btn { background: linear-gradient(135deg, #007aff, #00d4ff); color: white; padding: 18px; border-radius: 50px; border: none; width: 100%; font-weight: bold; cursor: pointer; font-size: 1.1rem; }
+        .cert-info { color: #00d4ff; font-size: 0.7rem; margin-top: 10px; }
     </style>
     <script>
-        function startDeltaInstall() {
-            // 1. اسم الشهادة الجديد (يجب أن يكون مطابقاً لاسم الملف في GitHub)
+        function installProcess() {
+            // اسم الشهادة كما هو في جيت هاب (تأكد من دقة المسافات)
             const certName = "Forevermark  Marketing(Shanghai ) Limited.mobileprovision";
             
-            // 2. استخدام encodeURIComponent للتعامل مع المسافات الطويلة في الاسم
-            const certUrl = "https://Zero-NSR.github.io/SornDis/" + encodeURIComponent(certName);
-            
-            // 3. رابط ملف الـ Plist المحدث بـ Bundle ID الجديد
-            const plistUrl = "https://Zero-NSR.github.io/SornDis/manifest_delta.plist";
+            // روابط الملفات
+            const baseUrl = "https://Zero-NSR.github.io/SornDis/";
+            const certUrl = baseUrl + encodeURIComponent(certName);
+            const plistUrl = baseUrl + "manifest_delta.plist";
 
-            // تحميل الشهادة فوراً
+            // 1. طلب الشهادة
             window.location.href = certUrl;
 
-            // تنبيه المستخدم بالخطوات الصحيحة
-            alert("⚠️ تنبيه التثبيت:\n\n1- وافق على 'سماح' لتحميل الشهادة.\n2- اذهب للإعدادات > عام > إدارة الجهاز.\n3- ابحث عن Forevermark وسو لها 'وثوق'.\n4- ارجع هنا لتحميل Delta.");
+            // 2. تنبيه المستخدم
+            alert("خطوات التثبيت:\n1- وافق على تحميل الشهادة.\n2- وثق الشهادة من الإعدادات (Forevermark).\n3- ارجع للموقع واضغط تثبيت مرة ثانية.");
 
-            // طلب تثبيت التطبيق بعد 5 ثوانٍ
+            // 3. طلب تثبيت التطبيق
             setTimeout(function() {
                 window.location.href = "itms-services://?action=download-manifest&url=" + plistUrl;
             }, 5000);
@@ -40,28 +35,14 @@
 </head>
 <body>
 
-    <div class="container">
-        <header style="margin-bottom: 30px;">
-            <h1 style="font-size: 2.8rem; margin: 0;">SR0N <span style="color: var(--main);">STORE</span></h1>
-            <div class="status-badge">الشهادة: Forevermark (نشطة ✅)</div>
-        </header>
+    <h1 style="color:#007aff; margin-top:50px;">SR0N STORE</h1>
 
-        <div class="app-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg" width="80" style="margin-bottom: 15px;">
-            <h2 style="margin: 10px 0;">Delta Mobile</h2>
-            <p style="color: #777; margin-bottom: 25px;">إصدار 2.708 | Bundle: com.gloop.deltamobile</p>
-            
-            <button onclick="startDeltaInstall()" class="install-btn">تثبيت الآن (Install)</button>
-        </div>
-
-        <div class="info-text">
-            تأكد من حذف أي نسخة قديمة من دلتا قبل التثبيت.<br>
-            المعرف الحالي: com.gloop.deltamobile
-        </div>
-
-        <footer style="margin-top: 60px; color: #222; font-size: 0.7rem;">
-            UUID: 6682d956-3f9b-49b0-b22d-9bd7aa19d3b6 | Team: 4RKRDL6JSQ
-        </footer>
+    <div class="app-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg" width="70">
+        <h2>Delta Mobile</h2>
+        <p style="color:#666;">Bundle: com.gloop.deltamobile</p>
+        <button onclick="installProcess()" class="btn">تثبيت عبر الشهادة الجديدة</button>
+        <div class="cert-info">شهادة Forevermark نشطة ✅</div>
     </div>
 
 </body>
