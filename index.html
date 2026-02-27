@@ -3,99 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SR0N STORE | متجر سورن</title>
+    <title>SR0N STORE</title>
     <style>
-        :root {
-            --primary: #007aff;
-            --bg: #050505;
-            --card: #121212;
-            --accent: linear-gradient(135deg, #007aff, #00c6ff);
-        }
-        body {
-            background-color: var(--bg); color: white;
-            font-family: -apple-system, system-ui, sans-serif;
-            margin: 0; text-align: center; direction: rtl;
-        }
-        header { padding: 50px 20px; }
-        header h1 { 
-            font-size: 3.2rem; margin: 0;
-            background: var(--accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            font-weight: 900;
-        }
-        .container { padding: 20px; max-width: 500px; margin: auto; }
-        .app-card {
-            background: var(--card); border-radius: 28px; padding: 25px;
-            border: 1px solid #222; margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .app-icon { width: 80px; height: 80px; border-radius: 20%; margin-bottom: 15px; }
-        .install-btn {
-            background: var(--accent); color: white; padding: 16px 0;
-            border-radius: 50px; border: none; font-weight: bold;
-            width: 100%; cursor: pointer; font-size: 1.1rem;
-        }
-        #status-bar {
-            display: none; background: rgba(0, 122, 255, 0.15);
-            color: var(--primary); padding: 12px; margin: 15px;
-            border-radius: 12px; border: 1px solid var(--primary);
-        }
+        body { background-color: #050505; color: white; font-family: sans-serif; text-align: center; direction: rtl; padding: 20px; }
+        .app-card { background: #121212; border-radius: 20px; padding: 20px; margin-bottom: 20px; border: 1px solid #222; }
+        .install-btn { background: linear-gradient(135deg, #007aff, #00c6ff); color: white; padding: 15px; border-radius: 50px; border: none; width: 100%; font-weight: bold; cursor: pointer; }
+        h1 { color: #007aff; }
     </style>
 
     <script>
-        function startInstall(plistUrl, appName) {
-            // 1. رابط الشهادة المرفوع في مستودعك (تأكد من رفعه باسم cert.mobileprovision)
-            const myCertRawUrl = "https://Zero-NSR.github.io/SornDis/cert.mobileprovision";
-            
-            // 2. تغليف الرابط ليتعرف عليه الأيفون كـ "ملف تعريف" (يحل مشكلة خطأ التحميل)
-            const webConfigUrl = "https://www.installonair.com/install-profile?url=" + myCertRawUrl;
-            
-            // تحديث واجهة الموقع
-            const status = document.getElementById('status-bar');
-            status.style.display = 'block';
-            status.innerHTML = "جاري تحضير الشهادة... وافق على 'سماح'";
+        function installApp(plistUrl, appName) {
+            // رابط ملف الشهادة في مستودعك
+            const certUrl = "https://Zero-NSR.github.io/SornDis/cert.mobileprovision";
 
-            // فتح صفحة تثبيت الشهادة
-            window.location.href = webConfigUrl;
+            // 1. فتح الشهادة بأسلوب يمنع الانتقال لمواقع خارجية
+            // نستخدم طريقة الـ iframe المخفي لتحميل الشهادة في الخلفية
+            var iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = certUrl;
+            document.body.appendChild(iframe);
 
-            // 3. إظهار تعليمات الوثوق ثم طلب تثبيت التطبيق
+            // 2. تنبيه المستخدم فوراً
             setTimeout(function() {
-                alert("⚠️ تنبيه مهم جداً:\n\n1- اضغط 'سماح' لتحميل الشهادة.\n2- اذهب فوراً لـ (الإعدادات > عام > إدارة الجهاز).\n3- ابحث عن Forevermark واضغط 'تثبيت' ثم 'وثوق'.\n4- ارجع للموقع هنا واضغط 'تثبيت' مرة ثانية للعبة.");
+                alert("✅ جاري تجهيز " + appName + "\n\n1- اضغط 'سماح' إذا ظهرت.\n2- اذهب للإعدادات > عام > إدارة الجهاز.\n3- اختر Forevermark وسو لها 'وثوق'.\n4- ارجع هنا وكمل التثبيت.");
                 
-                // بدء تحميل التطبيق الفعلي
+                // 3. طلب تثبيت التطبيق
                 window.location.href = "itms-services://?action=download-manifest&url=" + plistUrl;
-            }, 4000);
+            }, 1000);
         }
     </script>
 </head>
 <body>
 
-    <header>
-        <h1>SR0N STORE</h1>
-        <p style="color: #777;">متجر التطبيقات المعدلة الخاص بـ SR0N</p>
-    </header>
+    <h1>SR0N STORE</h1>
+    <p>تحميل مباشر وآمن</p>
 
-    <div id="status-bar"></div>
-
-    <div class="container">
-        <div class="app-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg" class="app-icon">
-            <h2>Delta Mobile</h2>
-            <p style="color: #555; font-size: 0.9rem;">تعديل: SR0N Engine | v2.705</p>
-            <button onclick="startInstall('https://Zero-NSR.github.io/SornDis/manifest_delta.plist', 'Delta')" class="install-btn">تثبيت (Install)</button>
-        </div>
-
-        <div class="app-card">
-            <img src="https://raw.githubusercontent.com/Nulls-Brawl/icons/main/icon.png" class="app-icon">
-            <h2>Sorn Brawl</h2>
-            <p style="color: #555; font-size: 0.9rem;">نسخة خاصة | Brawl Stars Mod</p>
-            <button onclick="startInstall('https://Zero-NSR.github.io/SornDis/manifest_brawl.plist', 'Sorn Brawl')" class="install-btn">تثبيت (Install)</button>
-        </div>
+    <div class="app-card">
+        <h2>Delta Mobile</h2>
+        <button onclick="installApp('https://Zero-NSR.github.io/SornDis/manifest_delta.plist', 'Delta')" class="install-btn">تثبيت الآن</button>
     </div>
 
-    <footer style="margin-top: 40px; color: #333; font-size: 0.8rem; padding-bottom: 30px;">
-        <p>شهادة التوثيق الحالية: Forevermark Marketing</p>
-        <p>© 2026 Zero-NSR GitHub Projects</p>
-    </footer>
+    <div class="app-card">
+        <h2>Sorn Brawl</h2>
+        <button onclick="installApp('https://Zero-NSR.github.io/SornDis/manifest_brawl.plist', 'Sorn Brawl')" class="install-btn">تثبيت الآن</button>
+    </div>
 
 </body>
 </html>
