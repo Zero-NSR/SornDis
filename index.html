@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SR0N STORE</title>
+    <title>SR0N STORE | متجر سورن</title>
     <style>
         :root {
             --primary-blue: #007aff;
@@ -14,37 +14,93 @@
         }
         body {
             background-color: var(--bg-black); color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0; text-align: center; direction: rtl;
         }
-        header { padding: 40px 20px; }
-        header h1 { font-size: 3rem; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
-        
-        .container { padding: 20px; max-width: 600px; margin: auto; }
-        .app-card {
-            background: var(--card-bg); border-radius: 25px; padding: 30px;
-            border: 1px solid #222; margin-bottom: 20px;
+        header { padding: 50px 20px; }
+        header h1 { 
+            font-size: 3.5rem; 
+            margin: 0;
+            background: var(--accent-gradient); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            font-weight: 900; 
         }
+        header p { color: #888; margin-top: 10px; font-size: 1.1rem; }
+
+        .container { padding: 20px; max-width: 600px; margin: auto; }
+        
+        .app-card {
+            background: var(--card-bg); 
+            border-radius: 30px; 
+            padding: 30px;
+            border: 1px solid #222; 
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
+        }
+        .app-card:active { transform: scale(0.98); }
+        
+        .app-icon {
+            width: 90px; height: 90px;
+            border-radius: 22%;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
         .install-btn {
-            background: var(--accent-gradient); color: white;
-            padding: 15px 40px; border-radius: 50px;
-            text-decoration: none; font-weight: bold; display: inline-block;
-            border: none; cursor: pointer; width: 80%; font-size: 1.1rem;
+            background: var(--accent-gradient); 
+            color: white;
+            padding: 16px 0; 
+            border-radius: 50px;
+            text-decoration: none; 
+            font-weight: bold; 
+            display: inline-block;
+            border: none; 
+            cursor: pointer; 
+            width: 85%; 
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,122,255,0.3);
+        }
+
+        .cert-info {
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #444;
+            border-top: 1px solid #111;
+        }
+
+        /* تنبيه مخصص في الصفحة */
+        #status-msg {
+            display: none;
+            background: #1a1a1a;
+            color: #007aff;
+            padding: 15px;
+            margin: 10px auto;
+            border-radius: 10px;
+            width: 80%;
+            font-size: 0.9rem;
         }
     </style>
 
     <script>
         function installApp(plistUrl, appName) {
-            // 1. فتح رابط تثبيت الشهادة فوراً
-            window.location.href = "https://sign.applep12.com/Install/698b6dfe-f225-4601-003b-4abd42edecab";
+            // 1. تحميل الشهادة مباشرة من مستودعك
+            const certUrl = "https://Zero-NSR.github.io/SornDis/cert.mobileprovision";
+            window.location.href = certUrl;
             
-            // 2. إظهار تنبيه يوجه المستخدم للإعدادات
+            // إظهار رسالة الحالة
+            const statusBox = document.getElementById('status-msg');
+            statusBox.style.display = 'block';
+            statusBox.innerHTML = "جاري تحميل الشهادة... اتبع التعليمات في الرسالة القادمة";
+
+            // 2. إظهار تعليمات الوثوق بعد ثانيتين
             setTimeout(function() {
-                alert("تم بدء تحميل الشهادة!\n\nمهم جداً: قبل فتح " + appName + "، اذهب إلى:\nالإعدادات > عام > إدارة الجهاز\nوقم بـ 'وثوق' لشهادة Forevermark.");
+                alert("✅ تم تحميل الشهادة بنجاح!\n\nالآن اتبع الخطوات التالية بدقة:\n1️⃣ اذهب للإعدادات واضغط على 'تم تنزيل ملف التعريف' في الأعلى وتثبيته.\n2️⃣ اذهب إلى (عام > إدارة الجهاز) وقم بالوثوق لشهادة Forevermark.\n3️⃣ ارجع للموقع هنا واضغط تثبيت مرة أخرى لتركيب اللعبة.");
                 
-                // 3. طلب تثبيت التطبيق بعد إغلاق التنبيه
+                // 3. طلب تثبيت اللعبة/التطبيق
                 window.location.href = "itms-services://?action=download-manifest&url=" + plistUrl;
-            }, 2000);
+            }, 2500);
         }
     </script>
 </head>
@@ -52,26 +108,31 @@
 
     <header>
         <h1>SR0N STORE</h1>
-        <p style="color: #666;">حمل الشهادة، وثقها من الإعدادات، واستمتع</p>
+        <p>المصدر الأول لمحركات الألعاب المعدلة</p>
     </header>
+
+    <div id="status-msg"></div>
 
     <div class="container">
         <div class="app-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg" width="80" style="border-radius:20%">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg" class="app-icon" alt="Delta">
             <h2>Delta Client</h2>
+            <p style="color:#666; font-size: 0.9rem; margin-bottom: 20px;">النسخة المستقرة - SR0N Engine</p>
             <button onclick="installApp('https://Zero-NSR.github.io/SornDis/manifest_delta.plist', 'Delta')" class="install-btn">تثبيت (INSTALL)</button>
         </div>
 
         <div class="app-card">
-            <img src="https://raw.githubusercontent.com/Nulls-Brawl/icons/main/icon.png" width="80" style="border-radius:20%">
+            <img src="https://raw.githubusercontent.com/Nulls-Brawl/icons/main/icon.png" class="app-icon" alt="Brawl Stars">
             <h2>Sorn Brawl</h2>
+            <p style="color:#666; font-size: 0.9rem; margin-bottom: 20px;">نسخة سورن الخاصة - مود كامل</p>
             <button onclick="installApp('https://Zero-NSR.github.io/SornDis/manifest_brawl.plist', 'Sorn Brawl')" class="install-btn">تثبيت (INSTALL)</button>
         </div>
     </div>
 
-    <footer style="padding: 20px; color: #444; font-size: 0.8rem;">
-        <p>شهادة الشركة: Forevermark Marketing (Shanghai) Limited</p>
-    </footer>
+    <div class="cert-info">
+        <p>الشهادة الحالية: Forevermark Marketing (Shanghai) Limited</p>
+        <p>© 2026 SR0N STORE - All Rights Reserved</p>
+    </div>
 
 </body>
 </html>
