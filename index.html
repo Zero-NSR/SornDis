@@ -1,48 +1,31 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SR0N STORE | التحديث الجديد</title>
-    <style>
-        body { background: #050505; color: white; font-family: -apple-system, sans-serif; text-align: center; padding: 20px; }
-        .card { background: #121212; border-radius: 25px; padding: 30px; border: 1px solid #222; max-width: 400px; margin: auto; }
-        .install-btn { background: linear-gradient(135deg, #007aff, #00d4ff); color: white; padding: 18px; border-radius: 50px; border: none; width: 100%; font-weight: bold; cursor: pointer; font-size: 1.2rem; margin-top: 20px; }
-        .cert-name { color: #00d4ff; font-size: 0.8rem; margin-bottom: 10px; }
-    </style>
-    <script>
-        function startInstall() {
-            // ملاحظة: يجب أن يكون اسم الملف في GitHub مطابقاً تماماً لهذا الاسم
-            const certFileName = "Forevermark  Marketing(Shanghai ) Limited.mobileprovision";
-            const certUrl = "https://Zero-NSR.github.io/SornDis/" + encodeURIComponent(certFileName);
-            const plistUrl = "https://Zero-NSR.github.io/SornDis/manifest_delta.plist";
-
-            // 1. تنبيه المستخدم
-            alert("خطوات التثبيت:\n1- وافق على تحميل الشهادة.\n2- اذهب للإعدادات > عام > إدارة الجهاز.\n3- وثق شهادة (Forevermark).\n4- ارجع هنا وكمل التثبيت.");
-
-            // 2. فتح الشهادة
-            window.location.href = certUrl;
-
-            // 3. طلب تثبيت اللعبة بعد 5 ثوانٍ
-            setTimeout(function() {
-                window.location.href = "itms-services://?action=download-manifest&url=" + plistUrl;
-            }, 5000);
-        }
-    </script>
-</head>
-<body>
-
-    <h1 style="color: #007aff;">SR0N STORE</h1>
-    
-    <div class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg" width="80">
-        <h2>Delta Mobile</h2>
-        <div class="cert-name">الشهادة: Forevermark Marketing</div>
-        <p style="color: #666;">إصدار: 2.708 (Dropbox)</p>
-        <button onclick="startInstall()" class="install-btn">تثبيت (Install)</button>
-    </div>
-
-    <p style="color: #333; margin-top: 40px; font-size: 0.7rem;">تم التحديث بشهادة شنغهاي الجديدة</p>
-
-</body>
-</html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>items</key>
+    <array>
+        <dict>
+            <key>assets</key>
+            <array>
+                <dict>
+                    <key>kind</key>
+                    <string>software-package</string>
+                    <key>url</key>
+                    <string>https://www.dropbox.com/scl/fi/hml0on7474iejy1kcdv07/Delta-Sorn_2.708.878_1772207884.ipa?rlkey=rahfdop8xxfz0i0rmavfxclyc&st=9q0x2nxx&dl=1</string>
+                </dict>
+            </array>
+            <key>metadata</key>
+            <dict>
+                <key>bundle-identifier</key>
+                <string>com.gloop.deltamobile</string>
+                <key>bundle-version</key>
+                <string>2.708</string>
+                <key>kind</key>
+                <string>software</string>
+                <key>title</key>
+                <string>Delta Sorn</string>
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>
