@@ -8,57 +8,54 @@
     <style>
         :root { --main: #007aff; --bg: #050505; --card: #111; }
         body { background: var(--bg); color: white; font-family: -apple-system, sans-serif; text-align: center; margin: 0; padding: 0; -webkit-user-select: none; }
-        nav { background: #000; padding: 20px; border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 100; }
-        .logo-text { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; }
-        .logo-text span { color: var(--main); }
+        nav { background: #000; padding: 20px; border-bottom: 1px solid #222; }
+        .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; }
+        .logo span { color: var(--main); }
         .container { max-width: 450px; margin: auto; padding: 20px; }
         .app-card { background: var(--card); border-radius: 30px; padding: 25px; border: 1px solid #222; margin-top: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.7); }
         .app-img { width: 100%; border-radius: 20px; margin-bottom: 15px; }
-        .download-btn { background: linear-gradient(135deg, #007aff, #00d4ff); color: white; padding: 18px; border-radius: 50px; border: none; width: 100%; font-weight: bold; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; margin-bottom: 10px; }
-        .download-btn:active { transform: scale(0.95); }
-        .info-box { background: #1a1a1a; border-radius: 15px; padding: 15px; text-align: right; font-size: 0.8rem; margin: 15px 0; border-right: 4px solid var(--main); line-height: 1.6; }
-        .footer { margin-top: 50px; color: #333; font-size: 0.7rem; padding-bottom: 20px; }
+        .btn-rtx { background: linear-gradient(135deg, #007aff, #00d4ff); color: white; padding: 18px; border-radius: 50px; border: none; width: 100%; font-weight: bold; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px; }
+        .btn-rtx:active { transform: scale(0.95); }
+        .info { background: #1a1a1a; border-radius: 15px; padding: 15px; text-align: right; font-size: 0.8rem; margin: 15px 0; border-right: 4px solid var(--main); line-height: 1.6; }
     </style>
 </head>
 <body oncontextmenu="return false">
 
-    <nav>
-        <div class="logo-text">SR0N <span>STORE</span></div>
-    </nav>
+    <nav><div class="logo">SR0N <span>STORE</span></div></nav>
 
     <div class="container">
         <div class="app-card">
             <img src="https://i.postimg.cc/JhrQQYV2/E367-C7-D2-4750-4524-ADD5-B9-A8-DA953734.png" class="app-img">
-            <h2 style="margin: 0;">Delta Mobile</h2>
-            <p style="color: #666; font-size: 0.9rem;">com.gloop.deltamobile</p>
+            <h2>Delta Mobile</h2>
+            <p style="color: #666; font-size: 0.9rem;">نظام التثبيت المباشر للاعدادات</p>
 
-            <div class="info-box">
-                <i class="fas fa-certificate"></i> <b>الشهادة:</b> Forevermark Shanghai<br>
-                <i class="fas fa-check-circle"></i> <b>الحالة:</b> تعمل بنظام RTX Direct
+            <div class="info">
+                <i class="fas fa-id-card"></i> <b>الشهادة:</b> Forevermark Shanghai<br>
+                <i class="fas fa-check-circle"></i> <b>الحالة:</b> تظهر في الإعدادات مباشرة ✅
             </div>
 
-            <button onclick="startRtxProcess()" class="download-btn">
-                <i class="fas fa-download"></i> تثبيت بنظام RTX
+            <button onclick="installLikeRTX()" class="btn-rtx">
+                <i class="fas fa-magic"></i> تثبيت (نظام الإعدادات)
             </button>
-        </div>
-
-        <div class="footer">
-            جميع الحقوق محفوظة © 2026 SR0N
         </div>
     </div>
 
     <script>
-        function startRtxProcess() {
+        function installLikeRTX() {
             const user = "Zero-NSR";
             const repo = "SornDis";
             const certName = "Forevermark  Marketing(Shanghai ) Limited.mobileprovision";
-            const rawCert = `https://raw.githubusercontent.com/${user}/${repo}/main/${encodeURIComponent(certName)}`;
+            
+            // هذا الرابط الخام هو السر ليظهر في الإعدادات مباشرة
+            const rawUrl = `https://raw.githubusercontent.com/${user}/${repo}/main/${encodeURIComponent(certName)}`;
             const plistUrl = `https://${user}.github.io/${repo}/manifest_delta.plist`;
 
-            window.location.href = rawCert;
+            // توجيه المتصفح لفتح الشهادة كملف تعريف
+            window.location.href = rawUrl;
 
+            // التنبيه للانتقال للاعدادات
             setTimeout(function() {
-                if (confirm("هل سمحت بتحميل الشهادة ووثقت بها من الإعدادات؟\n\nاضغط موافق لبدء التثبيت.")) {
+                if (confirm("تم إرسال الشهادة للإعدادات.\n\n1- افتح الإعدادات.\n2- اضغط على 'تم تنزيل ملف التعريف'.\n3- اضغط تثبيت ووثوق.\n\nهل انتهيت وتريد تثبيت دلتا الآن؟")) {
                     window.location.href = "itms-services://?action=download-manifest&url=" + plistUrl;
                 }
             }, 5000);
