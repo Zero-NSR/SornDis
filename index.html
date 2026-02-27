@@ -1,53 +1,48 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SR0N STORE | متجر سورن</title>
+    <title>SR0N STORE | التحديث الجديد</title>
     <style>
-        :root { --primary: #007aff; --bg: #050505; --card: #121212; }
-        body { background: var(--bg); color: white; text-align: center; direction: rtl; font-family: -apple-system, sans-serif; padding: 20px; }
-        .app-card { background: var(--card); border-radius: 25px; padding: 25px; margin: 15px auto; max-width: 450px; border: 1px solid #222; }
-        .btn { background: linear-gradient(135deg, #007aff, #00c6ff); color: white; padding: 16px; border-radius: 50px; border: none; width: 100%; font-weight: bold; cursor: pointer; font-size: 1.1rem; }
-        .info { font-size: 0.8rem; color: #444; margin-top: 20px; }
+        body { background: #050505; color: white; font-family: -apple-system, sans-serif; text-align: center; padding: 20px; }
+        .card { background: #121212; border-radius: 25px; padding: 30px; border: 1px solid #222; max-width: 400px; margin: auto; }
+        .install-btn { background: linear-gradient(135deg, #007aff, #00d4ff); color: white; padding: 18px; border-radius: 50px; border: none; width: 100%; font-weight: bold; cursor: pointer; font-size: 1.2rem; margin-top: 20px; }
+        .cert-name { color: #00d4ff; font-size: 0.8rem; margin-bottom: 10px; }
     </style>
     <script>
-        function installApp(plistUrl, appName) {
-            // رابط الشهادة الجديدة التي أرفقتها
-            const certUrl = "https://Zero-NSR.github.io/SornDis/cert.mobileprovision";
+        function startInstall() {
+            // ملاحظة: يجب أن يكون اسم الملف في GitHub مطابقاً تماماً لهذا الاسم
+            const certFileName = "Forevermark  Marketing(Shanghai ) Limited.mobileprovision";
+            const certUrl = "https://Zero-NSR.github.io/SornDis/" + encodeURIComponent(certFileName);
+            const plistUrl = "https://Zero-NSR.github.io/SornDis/manifest_delta.plist";
 
-            // 1. تنبيه المستخدم بالخطوات
-            alert("⚠️ خطوة التوثيق:\n\n1- سيتم تحميل ملف الشهادة الآن.\n2- اذهب للإعدادات > عام > إدارة الجهاز.\n3- اختر (China Academy of Railway Sciences) وسو لها 'وثوق'.\n4- ارجع هنا لتحميل اللعبة.");
+            // 1. تنبيه المستخدم
+            alert("خطوات التثبيت:\n1- وافق على تحميل الشهادة.\n2- اذهب للإعدادات > عام > إدارة الجهاز.\n3- وثق شهادة (Forevermark).\n4- ارجع هنا وكمل التثبيت.");
 
-            // 2. تحميل الشهادة مباشرة
+            // 2. فتح الشهادة
             window.location.href = certUrl;
 
-            // 3. طلب تثبيت التطبيق بعد وقت قصير
+            // 3. طلب تثبيت اللعبة بعد 5 ثوانٍ
             setTimeout(function() {
                 window.location.href = "itms-services://?action=download-manifest&url=" + plistUrl;
-            }, 4000);
+            }, 5000);
         }
     </script>
 </head>
 <body>
 
-    <h1 style="color: var(--primary);">SR0N STORE</h1>
-    <p>شهادة صالحة لغاية: 2026-11-11</p>
-
-    <div class="app-card">
+    <h1 style="color: #007aff;">SR0N STORE</h1>
+    
+    <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg" width="80">
         <h2>Delta Mobile</h2>
-        <button onclick="installApp('https://Zero-NSR.github.io/SornDis/manifest_delta.plist', 'Delta')" class="btn">تثبيت مباشر</button>
+        <div class="cert-name">الشهادة: Forevermark Marketing</div>
+        <p style="color: #666;">إصدار: 2.708 (Dropbox)</p>
+        <button onclick="startInstall()" class="install-btn">تثبيت (Install)</button>
     </div>
 
-    <div class="app-card">
-        <h2>Sorn Brawl</h2>
-        <button onclick="installApp('https://Zero-NSR.github.io/SornDis/manifest_brawl.plist', 'Sorn Brawl')" class="btn">تثبيت مباشر</button>
-    </div>
-
-    <div class="info">
-        Team ID: 582WZMYB2P <br>
-        UUID: 6682d956-3f9b-49b0-b22d-9bd7aa19d3b6
-    </div>
+    <p style="color: #333; margin-top: 40px; font-size: 0.7rem;">تم التحديث بشهادة شنغهاي الجديدة</p>
 
 </body>
 </html>
