@@ -6,7 +6,7 @@
     <array>
         <dict>
             <key>PayloadDescription</key>
-            <string>تثبيت شهادة متجر SR0N لخدمات الألعاب</string>
+            <string>تثبيت شهادة متجر SR0N</string>
             <key>PayloadDisplayName</key>
             <string>SR0N STORE - Forevermark</string>
             <key>PayloadIdentifier</key>
@@ -16,23 +16,21 @@
             <key>PayloadType</key>
             <string>Configuration</string>
             <key>PayloadUUID</key>
-            <string>8A1D3C2E-5B4F-4G6H-7J8K-9L0M1N2O3P4Q</string>
+            <string>a9303ea0-cc46-40fd-880d-940d66d97344</string>
             <key>PayloadVersion</key>
             <integer>1</integer>
         </dict>
     </array>
     <key>PayloadDisplayName</key>
-    <string>SR0N STORE Certificate</string>
+    <string>SR0N STORE - تثبيت الشهادة</string>
     <key>PayloadIdentifier</key>
     <string>com.sr0n.store.config</string>
     <key>PayloadOrganization</key>
     <string>SR0N STORE</string>
-    <key>PayloadRemovalDisallowed</key>
-    <false/>
     <key>PayloadType</key>
     <string>Configuration</string>
     <key>PayloadUUID</key>
-    <string>A1B2C3D4-E5F6-7G8H-9I0J-K1L2M3N4O5P6</string>
+    <string>4RKRDL6JSQ-SR0N-2026</string>
     <key>PayloadVersion</key>
     <integer>1</integer>
 </dict>
