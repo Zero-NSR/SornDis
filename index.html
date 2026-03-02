@@ -30,44 +30,46 @@
         <div class="app-card">
             <img src="https://i.postimg.cc/JhrQQYV2/E367-C7-D2-4750-4524-ADD5-B9-A8-DA953734.png" class="app-img">
             <h2 style="margin: 0;">Delta Mobile</h2>
-            <p style="color: #666; font-size: 0.9rem;">تثبيت مباشر (الإعدادات)</p>
+            <p style="color: #666; font-size: 0.9rem;">تثبيت مباشر عبر الإعدادات</p>
 
             <div class="info-box">
                 <i class="fas fa-shield-alt"></i> <b>الشهادة:</b> Forevermark Shanghai<br>
-                <i class="fas fa-check-circle"></i> <b>الحالة:</b> مدعوم iOS 18+
+                <i class="fas fa-check-circle"></i> <b>الحالة:</b> تعمل (نظام ملف التعريف)<br>
+                <i class="fas fa-clock"></i> <b>الصلاحية:</b> حتى 2026
             </div>
 
             <button onclick="startSronInstall()" class="download-btn">
-                <i class="fas fa-download"></i> تثبيت الآن
+                <i class="fas fa-magic"></i> تثبيت الشهادة والتطبيق
             </button>
         </div>
 
         <div class="footer">
-            جميع الحقوق محفوظة © 2026 SR0N
+            جميع الحقوق محفوظة © 2026 SR0N STORE
         </div>
     </div>
 
     <script>
         function startSronInstall() {
+            // بيانات حسابك ومستودعك
             const user = "Zero-NSR";
             const repo = "SornDis";
-            const configFile = "SR0N.mobileconfig";
-            const plistFile = "manifest_delta.plist";
+            
+            // روابط الملفات (تأكد من الأسماء في GitHub)
+            const configUrl = `https://raw.githubusercontent.com/${user}/${repo}/main/SR0N.mobileconfig`;
+            const plistUrl = `https://${user}.github.io/${repo}/manifest_delta.plist`;
 
-            // روابط الملفات
-            const configUrl = `https://raw.githubusercontent.com/${user}/${repo}/main/${configFile}`;
-            const plistUrl = `https://${user}.github.io/${repo}/${plistFile}`;
-
-            // فتح ملف التعريف مباشرة
+            // الخطوة 1: توجيه المستخدم لملف التعريف (يفتح الإعدادات)
             window.location.href = configUrl;
 
-            alert("✅ تنبيه:\nتم إرسال الملف للإعدادات.\n1- اضغط 'سماح' (Allow).\n2- اذهب للإعدادات > تم تنزيل ملف التعريف.\n3- اضغط تثبيت.\n\nبعد الانتهاء ارجع للموقع واضغط موافق.");
-
+            // الخطوة 2: تنبيه المستخدم بالخطوات
             setTimeout(function() {
-                if (confirm("هل انتهيت من تثبيت الشهادة؟\n\nاضغط موافق لبدء تثبيت التطبيق.")) {
+                alert("⚠️ تم إرسال الشهادة للإعدادات:\n1. اضغط 'سماح' إذا ظهرت.\n2. اذهب للإعدادات > تم تنزيل ملف التعريف.\n3. اضغط تثبيت ووثوق.\n4. ارجع للموقع واضغط موافق.");
+                
+                // الخطوة 3: سؤال المستخدم إذا خلص عشان يثبت التطبيق
+                if (confirm("هل انتهيت من تثبيت الشهادة في الإعدادات؟")) {
                     window.location.href = "itms-services://?action=download-manifest&url=" + plistUrl;
                 }
-            }, 7000);
+            }, 2000); 
         }
     </script>
 </body>
