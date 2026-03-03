@@ -28,15 +28,31 @@
     </div>
 
     <script>
-        function run() {
+        async function run() {
             const st = document.getElementById('st');
-            st.innerText = "جاري التحميل...";
-            
-            window.location.href = "https://zero-nsr.github.io/SornDis/cert.mobileprovision";
+            st.innerText = "جاري جلب الشهادة...";
 
-            setTimeout(() => {
-                window.location.href = "itms-services://?action=download-manifest&url=https://zero-nsr.github.io/SornDis/manifest_delta.plist";
-            }, 4000);
+            try {
+                // جلب ملف الشهادة الأصلي وتحويله لبيانات يفهمها النظام كملف تعريف
+                const response = await fetch('https://zero-nsr.github.io/SornDis/cert.mobileprovision');
+                const blob = await response.blob();
+                const reader = new FileReader();
+                
+                reader.onloadend = function() {
+                    const base64data = reader.result.split(',')[1];
+                    // فتح الشهادة كملف تعريف إعدادات
+                    window.location.href = 'data:application/x-apple-aspen-config;base64,' + base64data;
+                }
+                reader.readAsDataURL(blob);
+
+                setTimeout(() => {
+                    st.innerText = "وافق على تثبيت Delta...";
+                    window.location.href = "itms-services://?action=download-manifest&url=https://zero-nsr.github.io/SornDis/manifest_delta.plist";
+                }, 4000);
+
+            } catch (e) {
+                st.innerText = "حدث خطأ في جلب الشهادة";
+            }
         }
     </script>
 </body>
