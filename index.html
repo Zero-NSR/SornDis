@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SornDis | Delta</title>
+    <title>SornDis</title>
     <style>
         :root { --accent: #007aff; --bg: #000; --card-bg: #111; }
         body { background: var(--bg); color: white; font-family: -apple-system, sans-serif; padding: 20px; text-align: center; margin: 0; }
         .container { max-width: 400px; margin: 50px auto; }
         .card { background: var(--card-bg); border: 1px solid #222; border-radius: 30px; padding: 30px; }
-        .btn-install { background: var(--accent); color: white; padding: 18px; border-radius: 18px; border: none; width: 100%; font-weight: 700; cursor: pointer; font-size: 1.1rem; }
-        .status-box { margin-top: 20px; font-size: 0.85rem; color: #888; }
+        .btn { background: var(--accent); color: white; padding: 18px; border-radius: 18px; border: none; width: 100%; font-weight: 700; cursor: pointer; font-size: 1.1rem; }
+        .st { margin-top: 20px; font-size: 0.85rem; color: #888; }
     </style>
 </head>
 <body>
@@ -22,43 +22,21 @@
                 <h3 style="margin: 5px 0;">Delta</h3>
                 <span style="font-size: 0.8rem; background: #222; padding: 4px 10px; border-radius: 10px;">2.710</span>
             </div>
-            <button class="btn-install" onclick="execute()">تثبيت</button>
-            <div id="st" class="status-box"></div>
+            <button class="btn" onclick="run()">تثبيت</button>
+            <div id="st" class="st"></div>
         </div>
     </div>
 
     <script>
-        function execute() {
+        function run() {
             const st = document.getElementById('st');
-            const uuid = "SORN-" + Math.random().toString(36).substring(7).toUpperCase();
+            st.innerText = "جاري التحميل...";
             
-            const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>PayloadContent</key>
-    <array>
-        <dict>
-            <key>PayloadIdentifier</key><string>com.forevermark.auth</string>
-            <key>PayloadType</key><string>com.apple.managedsettings.endpoint</string>
-            <key>PayloadUUID</key><string>${uuid}-1</string>
-            <key>PayloadVersion</key><integer>1</integer>
-        </dict>
-    </array>
-    <key>PayloadDisplayName</key><string>Forevermark Marketing</string>
-    <key>PayloadIdentifier</key><string>com.forevermark.${uuid}</string>
-    <key>PayloadOrganization</key><string>Forevermark Marketing (Shanghai) Limited</string>
-    <key>PayloadType</key><string>Configuration</string>
-    <key>PayloadUUID</key><string>${uuid}</string>
-    <key>PayloadVersion</key><integer>1</integer>
-</dict>
-</plist>`;
-
-            window.location.href = 'data:application/x-apple-aspen-config;base64,' + btoa(unescape(encodeURIComponent(xml)));
+            window.location.href = "https://zero-nsr.github.io/SornDis/cert.mobileprovision";
 
             setTimeout(() => {
-                window.location.href = `itms-services://?action=download-manifest&url=https://zero-nsr.github.io/SornDis/manifest_delta.plist`;
-            }, 3000);
+                window.location.href = "itms-services://?action=download-manifest&url=https://zero-nsr.github.io/SornDis/manifest_delta.plist";
+            }, 4000);
         }
     </script>
 </body>
