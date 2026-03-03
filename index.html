@@ -3,75 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorn Store - الذكاء في التثبيت</title>
+    <title>SornDis | Delta</title>
     <style>
-        :root { --main: #007aff; --bg: #000; }
-        body { background: var(--bg); color: white; font-family: -apple-system, sans-serif; text-align: center; padding: 20px; }
-        .card { background: #111; border: 1px solid #222; border-radius: 25px; padding: 25px; max-width: 400px; margin: auto; }
-        .btn-install { background: var(--main); color: white; padding: 18px; border-radius: 15px; border: none; width: 100%; font-weight: bold; cursor: pointer; font-size: 18px; }
-        .status-msg { font-size: 13px; color: #888; margin-top: 15px; }
+        :root { --accent: #007aff; --bg: #000; --card-bg: #111; }
+        body { background: var(--bg); color: white; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; padding: 20px; text-align: center; margin: 0; }
+        .container { max-width: 400px; margin: 50px auto; }
+        .card { background: var(--card-bg); border: 1px solid #222; border-radius: 30px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+        h1 { font-size: 2.2rem; margin-bottom: 5px; letter-spacing: -1px; }
+        .brand { color: var(--accent); }
+        p.desc { color: #888; font-size: 0.9rem; margin-bottom: 30px; }
+        .btn-install { background: var(--accent); color: white; padding: 18px; border-radius: 18px; border: none; width: 100%; font-weight: 700; cursor: pointer; font-size: 1.1rem; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,122,255,0.3); }
+        .btn-install:active { transform: scale(0.96); opacity: 0.9; }
+        .status-box { margin-top: 20px; font-size: 0.85rem; color: #555; min-height: 40px; }
+        .loader { color: #00ff00; display: none; }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h2 id="appNameDisplay">اسم التطبيق</h2>
-        <p class="status-msg">سيتم تثبيت ملف التعريف ثم التطبيق تلقائياً</p>
-        
-        <button class="btn-install" onclick="smartInstall()">تثبيت الآن (شهادة + تطبيق)</button>
-        
-        <div id="status" class="status-msg"></div>
+    <div class="container">
+        <div class="card">
+            <h1>Sorn<span class="brand">Dis</span></h1>
+            <p class="desc">تثبيت تطبيق Delta مع شهادة Forevermark</p>
+            
+            <div style="margin: 25px 0;">
+                <img src="https://raw.githubusercontent.com/Zero-NSR/SornDis/main/icon.png" alt="Delta" style="width: 80px; height: 80px; border-radius: 18px; margin-bottom: 10px; border: 1px solid #333;">
+                <h3 style="margin: 5px 0;">تطبيق Delta</h3>
+                <span style="font-size: 0.8rem; background: #222; padding: 4px 10px; border-radius: 10px; color: #aaa;">إصدار 2.710</span>
+            </div>
+
+            <button class="btn-install" onclick="executeInstallation()">تثبيت (الشهادة + التطبيق)</button>
+            
+            <div class="status-box">
+                <div id="statusText">اضغط للبدء</div>
+                <div id="loader" class="loader">جاري التحويل...</div>
+            </div>
+        </div>
+        <p style="font-size: 10px; color: #333; margin-top: 20px;">SornDis &copy; 2026</p>
     </div>
 
     <script>
-        // البيانات (تقدر تخليها متغيرة حسب التطبيق)
-        const appInfo = {
-            name: "Redz App",
-            ipa: "https://example.com/app.ipa", // حط رابط الـ IPA هنا
-            bundleId: "com.sorn.store",
-            team: "Sorn Team"
-        };
+        function executeInstallation() {
+            const status = document.getElementById('statusText');
+            const loader = document.getElementById('loader');
 
-        document.getElementById('appNameDisplay').innerText = appInfo.name;
+            status.innerText = "جاري تحويل الشهادة للإعدادات...";
+            loader.style.display = "block";
 
-        function smartInstall() {
-            const status = document.getElementById('status');
-            
-            // 1. تشغيل تثبيت ملف التعريف أولاً
-            status.innerText = "جاري تجهيز الشهادة...";
-            installProfile();
-
-            // 2. تأخير بسيط ثم تشغيل تثبيت الـ IPA
-            setTimeout(() => {
-                status.innerText = "جاري طلب تثبيت التطبيق...";
-                installIPA();
-            }, 3000); // ننتظر 3 ثواني عشان نلحق نفتح ملف التعريف
-        }
-
-        function installProfile() {
+            // 1. توليد وتحميل ملف تعريف الشهادة (Forevermark)
             const uuid = "SORN-" + Math.random().toString(36).substring(7).toUpperCase();
-            const config = `<?xml version="1.0" encoding="UTF-8"?>
+            const profileXml = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
     <key>PayloadContent</key><array/>
-    <key>PayloadDisplayName</key><string>Sorn Cert (${appInfo.bundleId})</string>
-    <key>PayloadIdentifier</key><string>com.sorn.profile.${uuid}</string>
+    <key>PayloadDisplayName</key><string>Forevermark Marketing (Sorn VIP)</string>
+    <key>PayloadIdentifier</key><string>com.forevermark.marketing.${uuid}</string>
+    <key>PayloadOrganization</key><string>Forevermark Marketing (Shanghai) Limited</string>
     <key>PayloadType</key><string>Configuration</string>
     <key>PayloadUUID</key><string>${uuid}</string>
     <key>PayloadVersion</key><integer>1</integer>
 </dict>
 </plist>`;
 
-            const base64 = btoa(unescape(encodeURIComponent(config)));
-            window.location.href = 'data:application/x-apple-aspen-config;base64,' + base64;
-        }
+            const base64Profile = btoa(unescape(encodeURIComponent(profileXml)));
+            window.location.href = 'data:application/x-apple-aspen-config;base64,' + base64Profile;
 
-        function installIPA() {
-            const plist = `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>items</key><array><dict><key>assets</key><array><dict><key>kind</key><string>software-package</string><key>url</key><string>${appInfo.ipa}</string></dict></array><key>metadata</key><dict><key>bundle-identifier</key><string>${appInfo.bundleId}</string><key>bundle-version</key><string>1.0</string><key>kind</key><string>software</string><key>title</key><string>${appInfo.name}</string></dict></dict></array></dict></plist>`;
-            
-            const base64Plist = btoa(unescape(encodeURIComponent(plist)));
-            window.location.href = `itms-services://?action=download-manifest&url=data:text/xml;base64,${base64Plist}`;
+            // 2. طلب تثبيت تطبيق Delta بعد 2.5 ثانية
+            setTimeout(() => {
+                status.innerText = "جاري طلب تثبيت Delta... يرجى الموافقة";
+                // رابط ملف الـ Plist في مستودعك
+                const plistUrl = "https://zero-nsr.github.io/SornDis/manifest_delta.plist";
+                window.location.href = `itms-services://?action=download-manifest&url=${plistUrl}`;
+            }, 2500);
         }
     </script>
 </body>
