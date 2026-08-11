@@ -3,77 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SornDis</title>
+    <title>SornDis | Delta Redz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --accent: #007aff; --bg: #000; }
-        body { background: var(--bg); color: white; font-family: -apple-system, sans-serif; padding: 20px; text-align: center; }
-        .card { background: #111; border: 1px solid #222; border-radius: 30px; padding: 30px; max-width: 350px; margin: 50px auto; }
-        .btn { background: var(--accent); color: white; padding: 18px; border-radius: 18px; border: none; width: 100%; font-weight: 700; cursor: pointer; }
-        .st { margin-top: 20px; font-size: 0.8rem; color: #555; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root { 
+            --accent: #007aff; 
+            --bg: #0c0c0c; 
+            --card-bg: #161616;
+            --border: #262626;
+        }
+
+        body { 
+            background-color: var(--bg); 
+            color: #ffffff; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 30px;
+            width: 100%;
+            max-width: 360px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        }
+
+        .title { font-size: 28px; font-weight: 800; margin-bottom: 6px; }
+        .accent { color: var(--accent); }
+        .subtitle { color: #888888; font-size: 14px; margin-bottom: 25px; }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+        }
+
+        .btn:active { transform: scale(0.98); }
+
+        .btn-primary { background-color: var(--accent); color: #ffffff; }
+        .btn-primary:hover { background-color: #0062cc; }
+
+        .btn-secondary { background-color: #222222; color: #ffffff; border: 1px solid #333333; }
+        .btn-secondary:hover { background-color: #2c2c2c; }
+
+        .info-box {
+            background-color: #111111;
+            border: 1px dashed #333333;
+            border-radius: 14px;
+            padding: 14px;
+            font-size: 12px;
+            color: #aaaaaa;
+            margin-top: 15px;
+            text-align: right;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <h1>Sorn<span style="color:var(--accent)">Dis</span></h1>
-        <p style="color:#888; font-size:14px;">تحديث Delta 2.710</p>
-        <button class="btn" onclick="install()">تثبيت الشهادة والتطبيق</button>
-        <div id="st" class="st"></div>
+        <div class="title">Sorn<span class="accent">Dis</span></div>
+        <div class="subtitle">تحديث Delta Redz v2.733</div>
+
+        <a class="btn btn-primary" href="itms-services://?action=download-manifest&url=https://zero-nsr.github.io/SornDis/manifest_delta.plist">
+            <i class="fa-solid fa-download"></i> تثبيت مباشر
+        </a>
+
+        <a class="btn btn-secondary" href="https://www.dropbox.com/scl/fi/us3z7qud1vzc57ybg6es0/DeltaRedz_2.733.988_1786463483.ipa?rlkey=0v4d0cesq7r5z03uva45ckxai&st=wa8lzzsl&dl=1" download>
+            <i class="fa-solid fa-file-arrow-down"></i> تحميل IPA
+        </a>
+
+        <div class="info-box">
+            <b><i class="fa-solid fa-circle-info"></i> خطوات التوثيق:</b><br>
+            بعد التثبيت المباشر، اذهب إلى:<br>
+            <b>الإعدادات > عام > إدارة الجهاز</b> وقم بتوثيق الشهادة.
+        </div>
     </div>
 
-    <script>
-        async function install() {
-            const st = document.getElementById('st');
-            st.innerText = "جاري تفعيل شهادة Forevermark...";
-
-            try {
-                // 1. جلب بيانات الشهادة الحقيقية من مستودعك
-                const res = await fetch('https://zero-nsr.github.io/SornDis/cert.mobileprovision');
-                const buffer = await res.arrayBuffer();
-                const content = new TextDecoder('ascii').decode(buffer);
-
-                // استخراج المعرفات الحقيقية للشهادة
-                const team = content.match(/<key>TeamName<\/key>\s*<string>(.*?)<\/string>/)?.[1] || "Forevermark";
-                const uuid = "SORN-" + Math.random().toString(36).substring(7).toUpperCase();
-
-                // 2. بناء ملف تعريف "موثوق" يربط الجهاز بالشهادة
-                const config = `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>PayloadContent</key>
-    <array>
-        <dict>
-            <key>PayloadType</key><string>com.apple.webclip.managed</string>
-            <key>PayloadIdentifier</key><string>com.sorn.trust</string>
-            <key>PayloadUUID</key><string>${uuid}-1</string>
-            <key>PayloadVersion</key><integer>1</integer>
-            <key>Label</key><string>Sorn VIP Trust</string>
-            <key>URL</key><string>https://zero-nsr.github.io/SornDis/</string>
-        </dict>
-    </array>
-    <key>PayloadDisplayName</key><string>Trust Forevermark: ${team}</string>
-    <key>PayloadIdentifier</key><string>com.sorn.forevermark</string>
-    <key>PayloadOrganization</key><string>${team}</string>
-    <key>PayloadType</key><string>Configuration</string>
-    <key>PayloadUUID</key><string>${uuid}</string>
-    <key>PayloadVersion</key><integer>1</integer>
-</dict>
-</plist>`;
-
-                // تشغيل ملف التعريف
-                window.location.href = 'data:application/x-apple-aspen-config;base64,' + btoa(unescape(encodeURIComponent(config)));
-
-                // 3. طلب تثبيت التطبيق بعد وقت كافٍ
-                setTimeout(() => {
-                    st.innerText = "الآن اضغط 'تثبيت' وقم بالوثوق من الإعدادات";
-                    window.location.href = "itms-services://?action=download-manifest&url=https://zero-nsr.github.io/SornDis/manifest_delta.plist";
-                }, 5000);
-
-            } catch (e) {
-                st.innerText = "خطأ: تأكد من وجود ملف cert.mobileprovision";
-            }
-        }
-    </script>
 </body>
 </html>
