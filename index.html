@@ -99,10 +99,10 @@
             {
                 name: "Delta Redz",
                 version: "v2.733",
-                icon: "https://raw.githubusercontent.com/Zero-NSR/SornDis/main/icon.png",
-                working: true, // غيّرها لـ false إذا توقفت الشهادة مستقبلاً
-                plistUrl: "https://raw.githubusercontent.com/Zero-NSR/SornDis/main/manifest_delta.plist",
-                ipaUrl: "https://www.dropbox.com/scl/fi/us3z7qud1vzc57ybg6es0/DeltaRedz_2.733.988_1786463483.ipa?rlkey=0v4d0cesq7r5z03uva45ckxai&st=wa8lzzsl&dl=1"
+                icon: "https://via.placeholder.com/60",
+                working: true,
+                plistUrl: "https://zero-nsr.github.io/SornDis/manifest_delta.plist",
+                ipaUrl: "https://dl.dropboxusercontent.com/scl/fi/us3z7qud1vzc57ybg6es0/DeltaRedz_2.733.988_1786463483.ipa?rlkey=0v4d0cesq7r5z03uva45ckxai&st=wa8lzzsl"
             }
         ];
 
@@ -141,6 +141,11 @@
         }
 
         function installApp(plistUrl) {
+            const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+            if (!isSafari) {
+                alert("يرجى فتح الموقع من متصفح Safari الأساسي في الآيفون لضمان التثبيت.");
+                return;
+            }
             window.location.href = "itms-services://?action=download-manifest&url=" + encodeURIComponent(plistUrl);
         }
 
