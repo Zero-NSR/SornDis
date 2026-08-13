@@ -17,13 +17,13 @@
             <key>metadata</key>
             <dict>
                 <key>bundle-identifier</key>
-                <string>com.sorndis.delta</string>
+                <string>com.gloop.deltamobileRedz</string>
                 <key>bundle-version</key>
-                <string>2.733</string>
+                <string>2.733.988</string>
                 <key>kind</key>
                 <string>software</string>
                 <key>title</key>
-                <string>Delta Redz</string>
+                <string>DeltaRedz</string>
             </dict>
         </dict>
     </array>
