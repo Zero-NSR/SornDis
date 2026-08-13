@@ -28,10 +28,20 @@
         }
 
         .container { width: 100%; max-width: 400px; }
-        .header { text-align: center; margin-bottom: 25px; }
+        .header { text-align: center; margin-bottom: 20px; }
         .title { font-size: 32px; font-weight: 800; }
         .accent { color: var(--accent); }
         .subtitle { color: #888; font-size: 14px; margin-top: 5px; }
+
+        .webclip-banner {
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.2), rgba(0, 122, 255, 0.05));
+            border: 1px solid var(--accent);
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .webclip-banner p { font-size: 13px; color: #ccc; margin-bottom: 10px; }
 
         .app-card {
             background-color: var(--card-bg);
@@ -78,6 +88,7 @@
         }
 
         .btn-install { background-color: var(--accent); color: white; }
+        .btn-webclip { background-color: var(--accent); color: white; width: 100%; }
         .btn-disabled { background-color: #2a2a2a; color: #666; cursor: not-allowed; }
         .btn-ipa { background-color: #222; color: white; border: 1px solid #333; }
         .btn:active:not(.btn-disabled) { transform: scale(0.97); }
@@ -89,6 +100,13 @@
         <div class="header">
             <div class="title">Sorn<span class="accent">Dis</span></div>
             <div class="subtitle">منصة تحميل تطبيقات iOS</div>
+        </div>
+
+        <div class="webclip-banner">
+            <p>مثّبّت الموقع على شاشة جهازك بدون متصفح</p>
+            <a href="https://zero-nsr.github.io/SornDis/SornDis.mobileconfig" class="btn btn-webclip">
+                <i class="fa-solid fa-mobile-screen"></i> تثبيت التطبيق على الشاشة
+            </a>
         </div>
 
         <div id="apps-container"></div>
