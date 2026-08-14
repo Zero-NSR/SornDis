@@ -2,42 +2,30 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>PayloadContent</key>
-    <array>
-        <dict>
-            <key>FullScreen</key>
-            <true/>
-            <key>IsRemovable</key>
-            <true/>
-            <key>Label</key>
-            <string>SornDis</string>
-            <key>PayloadDisplayName</key>
-            <string>SornDis Web App</string>
-            <key>PayloadIdentifier</key>
-            <string>com.sorndis.app.webclip</string>
-            <key>PayloadType</key>
-            <string>com.apple.webClip.managed</string>
-            <key>PayloadUUID</key>
-            <string>a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d</string>
-            <key>PayloadVersion</key>
-            <integer>1</integer>
-            <key>Precomposed</key>
-            <true/>
-            <key>URL</key>
-            <string>https://zero-nsr.github.io/SornDis/</string>
-        </dict>
-    </array>
-    <key>PayloadDisplayName</key>
-    <string>SornDis Application</string>
-    <key>PayloadIdentifier</key>
-    <string>com.sorndis.app.profile</string>
-    <key>PayloadOrganization</key>
-    <string>SornDis</string>
-    <key>PayloadType</key>
-    <string>Configuration</string>
-    <key>PayloadUUID</key>
-    <string>f6e5d4c3-b2a1-0f9e-8d7c-6b5a4f3e2d1c</string>
-    <key>PayloadVersion</key>
-    <integer>1</integer>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>assets</key>
+			<array>
+				<dict>
+					<key>kind</key>
+					<string>software-package</string>
+					<key>url</key>
+					<string>https://dl.dropboxusercontent.com/scl/fi/us3z7qud1vzc57ybg6es0/DeltaRedz_2.733.988_1786463483.ipa?rlkey=0v4d0cesq7r5z03uva45ckxai&st=wa8lzzsl</string>
+				</dict>
+			</array>
+			<key>metadata</key>
+			<dict>
+				<key>bundle-identifier</key>
+				<string>com.olJUZF.AHuiH5</string>
+				<key>bundle-version</key>
+				<string>2.733.988</string>
+				<key>kind</key>
+				<string>software</string>
+				<key>title</key>
+				<string>Delta Redz</string>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>
