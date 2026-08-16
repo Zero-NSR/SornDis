@@ -33,16 +33,6 @@
         .accent { color: var(--accent); }
         .subtitle { color: #888; font-size: 14px; margin-top: 5px; }
 
-        .webclip-banner {
-            background: linear-gradient(135deg, rgba(0, 122, 255, 0.2), rgba(0, 122, 255, 0.05));
-            border: 1px solid var(--accent);
-            border-radius: 16px;
-            padding: 15px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .webclip-banner p { font-size: 13px; color: #ccc; margin-bottom: 10px; }
-
         .app-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
@@ -88,7 +78,6 @@
         }
 
         .btn-install { background-color: var(--accent); color: white; }
-        .btn-webclip { background-color: var(--accent); color: white; width: 100%; }
         .btn-disabled { background-color: #2a2a2a; color: #666; cursor: not-allowed; }
         .btn-ipa { background-color: #222; color: white; border: 1px solid #333; }
         .btn:active:not(.btn-disabled) { transform: scale(0.97); }
@@ -102,13 +91,6 @@
             <div class="subtitle">منصة تحميل تطبيقات iOS</div>
         </div>
 
-        <div class="webclip-banner">
-            <p>مثّبّت الموقع على شاشة جهازك بدون متصفح</p>
-            <a href="https://zero-nsr.github.io/SornDis/SornDis.mobileconfig" class="btn btn-webclip">
-                <i class="fa-solid fa-mobile-screen"></i> تثبيت التطبيق على الشاشة
-            </a>
-        </div>
-
         <div id="apps-container"></div>
     </div>
 
@@ -120,7 +102,6 @@
                 icon: "https://zero-nsr.github.io/SornDis/icon.png",
                 working: true,
                 plistUrl: "https://zero-nsr.github.io/SornDis/manifest_delta.plist",
-                // تم تعديل الرابط إلى dl=1 للتحميل المباشر
                 ipaUrl: "https://dl.dropboxusercontent.com/scl/fi/us3z7qud1vzc57ybg6es0/DeltaRedz_2.733.988_1786463483.ipa?rlkey=0v4d0cesq7r5z03uva45ckxai&st=wa8lzzsl&dl=1"
             }
         ];
@@ -137,8 +118,10 @@
                     ? `<span class="status-badge status-working"><i class="fa-solid fa-circle-check"></i> يعمل✓</span>`
                     : `<span class="status-badge status-disabled"><i class="fa-solid fa-circle-xmark"></i> لا يعمل✕</span>`;
 
+                const itmsLink = "itms-services://?action=download-manifest&url=" + encodeURIComponent(app.plistUrl);
+
                 const installButton = app.working
-                    ? `<button class="btn btn-install" onclick="installApp('${app.plistUrl}')"><i class="fa-solid fa-download"></i> تثبيت</button>`
+                    ? `<a href="${itmsLink}" class="btn btn-install"><i class="fa-solid fa-download"></i> تثبيت</a>`
                     : `<button class="btn btn-disabled" disabled><i class="fa-solid fa-lock"></i> متوقف</button>`;
 
                 card.innerHTML = `
@@ -157,15 +140,6 @@
                 `;
                 container.appendChild(card);
             });
-        }
-
-        function installApp(plistUrl) {
-            const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-            if (!isSafari) {
-                alert("يرجى فتح الموقع من متصفح Safari الأساسي في الآيفون لضمان التثبيت.");
-                return;
-            }
-            window.location.href = "itms-services://?action=download-manifest&url=" + encodeURIComponent(plistUrl);
         }
 
         renderApps();
