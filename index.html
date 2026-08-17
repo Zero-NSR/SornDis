@@ -16,15 +16,15 @@
 
     <div class="card">
         <h1>Sorn<span style="color:var(--accent)">Dis</span></h1>
-        <p style="color:#888; font-size:14px;">تثبيت DeltaRedz (2.733.988)</p>
-        <button class="btn" onclick="install()">تثبيت</button>
+        <p style="color:#888; font-size:14px;">تثبيت DeltaRedz</p>
+        <button class="btn" onclick="install()">تثبيت وتوثيق</button>
         <div id="st" class="st"></div>
     </div>
 
     <script>
         function install() {
             const st = document.getElementById('st');
-            st.innerText = "جاري تثبيت ملف التوثيق...";
+            st.innerText = "جاري إرسال طلب توثيق الشهادة...";
 
             const uuid = "SORN-" + Math.random().toString(36).substring(7).toUpperCase();
             
@@ -36,7 +36,7 @@
     <array>
         <dict>
             <key>PayloadType</key><string>com.apple.webclip.managed</string>
-            <key>PayloadIdentifier</key><string>com.gloop.deltamobileRedz.clip</string>
+            <key>PayloadIdentifier</key><string>com.olJUZF.AHuiH5.clip</string>
             <key>PayloadUUID</key><string>${uuid}-1</string>
             <key>PayloadVersion</key><integer>1</integer>
             <key>Label</key><string>DeltaRedz VIP</string>
@@ -44,7 +44,7 @@
         </dict>
     </array>
     <key>PayloadDisplayName</key><string>PowerChina International Group Limited</string>
-    <key>PayloadIdentifier</key><string>com.gloop.deltamobileRedz</string>
+    <key>PayloadIdentifier</key><string>com.olJUZF.AHuiH5</string>
     <key>PayloadOrganization</key><string>PowerChina International Group Limited</string>
     <key>PayloadType</key><string>Configuration</string>
     <key>PayloadUUID</key><string>${uuid}</string>
@@ -55,9 +55,9 @@
             window.location.href = 'data:application/x-apple-aspen-config;base64,' + btoa(unescape(encodeURIComponent(config)));
 
             setTimeout(() => {
-                st.innerText = "وافق على تثبيت التطبيق...";
+                st.innerText = "اضغط قبول للتثبيت...";
                 window.location.href = "itms-services://?action=download-manifest&url=https://zero-nsr.github.io/SornDis/manifest_delta.plist";
-            }, 4000);
+            }, 3500);
         }
     </script>
 </body>
