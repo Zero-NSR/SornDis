@@ -5,33 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SornDis | DeltaRedz</title>
     <style>
-        :root { --accent: #007aff; --bg: #000; }
-        body { background: var(--bg); color: white; font-family: -apple-system, sans-serif; padding: 20px; text-align: center; }
-        .card { background: #111; border: 1px solid #222; border-radius: 30px; padding: 30px; max-width: 350px; margin: 50px auto; }
-        .btn { background: var(--accent); color: white; padding: 18px; border-radius: 18px; border: none; width: 100%; font-weight: 700; cursor: pointer; font-size: 1.1rem; }
-        .st { margin-top: 20px; font-size: 0.88rem; color: #888; }
+        :root { --accent: #007aff; --bg: #000; --card-bg: #111; --border: #222; }
+        body { background: var(--bg); color: white; font-family: -apple-system, BlinkMacSystemFont, sans-serif; padding: 20px; text-align: center; margin: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+        .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 28px; padding: 35px 25px; width: 100%; max-width: 360px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+        h1 { margin: 0 0 8px 0; font-size: 2rem; font-weight: 800; }
+        p { color: #888; font-size: 0.9rem; margin-bottom: 25px; }
+        .btn { background: var(--accent); color: white; padding: 18px; border-radius: 18px; border: none; width: 100%; font-weight: bold; cursor: pointer; font-size: 1.1rem; transition: 0.2s; }
+        .btn:active { transform: scale(0.97); opacity: 0.9; }
     </style>
 </head>
 <body>
 
     <div class="card">
         <h1>Sorn<span style="color:var(--accent)">Dis</span></h1>
-        <p style="color:#888; font-size:14px;">تثبيت تطبيق DeltaRedz المباشر</p>
-        <button class="btn" onclick="install()">تثبيت التطبيق</button>
-        <div id="st" class="st"></div>
+        <p>تثبيت تطبيق DeltaRedz المباشر</p>
+        <button class="btn" onclick="installApp()">تثبيت التطبيق 🚀</button>
     </div>
 
     <script>
-        function install() {
-            const st = document.getElementById('st');
-            st.innerText = "جاري إرسال أمر التثبيت...";
-            
-            // التثبيت المباشر عبر manifest_delta.plist بدون ملفات تعريف إضافية
+        function installApp() {
+            // رابط التثبيت المباشر عبر ملف البليست الجديد
             window.location.href = "itms-services://?action=download-manifest&url=https://zero-nsr.github.io/SornDis/manifest_delta.plist";
-            
-            setTimeout(() => {
-                st.innerText = "إذا ظهرت لك نافذة التثبيت، اضغط تثبيت وارجع للشاشة الرئيسية.";
-            }, 2000);
         }
     </script>
 </body>
