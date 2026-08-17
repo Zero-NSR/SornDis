@@ -9,55 +9,29 @@
         body { background: var(--bg); color: white; font-family: -apple-system, sans-serif; padding: 20px; text-align: center; }
         .card { background: #111; border: 1px solid #222; border-radius: 30px; padding: 30px; max-width: 350px; margin: 50px auto; }
         .btn { background: var(--accent); color: white; padding: 18px; border-radius: 18px; border: none; width: 100%; font-weight: 700; cursor: pointer; font-size: 1.1rem; }
-        .st { margin-top: 20px; font-size: 0.8rem; color: #888; }
+        .st { margin-top: 20px; font-size: 0.88rem; color: #888; }
     </style>
 </head>
 <body>
 
     <div class="card">
         <h1>Sorn<span style="color:var(--accent)">Dis</span></h1>
-        <p style="color:#888; font-size:14px;">تثبيت DeltaRedz</p>
-        <button class="btn" onclick="install()">تثبيت وتوثيق</button>
+        <p style="color:#888; font-size:14px;">تثبيت تطبيق DeltaRedz المباشر</p>
+        <button class="btn" onclick="install()">تثبيت التطبيق</button>
         <div id="st" class="st"></div>
     </div>
 
     <script>
         function install() {
             const st = document.getElementById('st');
-            st.innerText = "جاري إرسال طلب توثيق الشهادة...";
-
-            const uuid = "SORN-" + Math.random().toString(36).substring(7).toUpperCase();
+            st.innerText = "جاري إرسال أمر التثبيت...";
             
-            const config = `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>PayloadContent</key>
-    <array>
-        <dict>
-            <key>PayloadType</key><string>com.apple.webclip.managed</string>
-            <key>PayloadIdentifier</key><string>com.olJUZF.AHuiH5.clip</string>
-            <key>PayloadUUID</key><string>${uuid}-1</string>
-            <key>PayloadVersion</key><integer>1</integer>
-            <key>Label</key><string>DeltaRedz VIP</string>
-            <key>URL</key><string>https://zero-nsr.github.io/SornDis/</string>
-        </dict>
-    </array>
-    <key>PayloadDisplayName</key><string>PowerChina International Group Limited</string>
-    <key>PayloadIdentifier</key><string>com.olJUZF.AHuiH5</string>
-    <key>PayloadOrganization</key><string>PowerChina International Group Limited</string>
-    <key>PayloadType</key><string>Configuration</string>
-    <key>PayloadUUID</key><string>${uuid}</string>
-    <key>PayloadVersion</key><integer>1</integer>
-</dict>
-</plist>`;
-
-            window.location.href = 'data:application/x-apple-aspen-config;base64,' + btoa(unescape(encodeURIComponent(config)));
-
+            // التثبيت المباشر عبر manifest_delta.plist بدون ملفات تعريف إضافية
+            window.location.href = "itms-services://?action=download-manifest&url=https://zero-nsr.github.io/SornDis/manifest_delta.plist";
+            
             setTimeout(() => {
-                st.innerText = "اضغط قبول للتثبيت...";
-                window.location.href = "itms-services://?action=download-manifest&url=https://zero-nsr.github.io/SornDis/manifest_delta.plist";
-            }, 3500);
+                st.innerText = "إذا ظهرت لك نافذة التثبيت، اضغط تثبيت وارجع للشاشة الرئيسية.";
+            }, 2000);
         }
     </script>
 </body>
