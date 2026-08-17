@@ -11,13 +11,14 @@
                     <key>kind</key>
                     <string>software-package</string>
                     <key>url</key>
+                    <!-- رابط التنزيل المباشر المباشر لملف الـ IPA -->
                     <string>https://dl.dropboxusercontent.com/scl/fi/us3z7qud1vzc57ybg6es0/DeltaRedz_2.733.988_1786463483.ipa?rlkey=0v4d0cesq7r5z03uva45ckxai&amp;st=tkqjltm0&amp;dl=1</string>
                 </dict>
             </array>
             <key>metadata</key>
             <dict>
                 <key>bundle-identifier</key>
-                <string>com.olJUZF.AHuiH5</string>
+                <string>com.sorndis.deltaredz</string>
                 <key>bundle-version</key>
                 <string>2.733.988</string>
                 <key>kind</key>
